@@ -1,0 +1,21 @@
+<%_.each(obj,function(data,value){%>
+<div class="tr" name="userItemTr" uid="<%=data.sid%>" uname="<%=data.attr3%>" style="margin-top: 5px;">
+    <ul class="trul">
+        <li class="amount" style="width: 25%"><%=data.attr1%>&nbsp;</li>
+        <li class="amount" style="width: 25%"><%=data.attr3%>&nbsp;</li>
+        <li class="amount" style="width: 25%"><%=data.attr5%>&nbsp;</li>
+        <% console.log(data) %>
+        <% if(data.isTrue){ %>
+        <li class="forum" style="width: 25%">
+            <span uid="<%=data.sid%>" name="chooseUserSpan" style="margin-left: 4px;"
+                  class="chooseAllClass button chk checkbox_true_full"></span>
+        </li>
+        <%}else{%>
+        <li class="forum" style="width: 25%">
+            <span uid="<%=data.sid%>" name="chooseUserSpan" style="margin-left: 4px;"
+                  class="chooseAllClass button chk checkbox_false_full"></span>
+        </li>
+        <%}%>
+    </ul>
+</div>
+<%})%>

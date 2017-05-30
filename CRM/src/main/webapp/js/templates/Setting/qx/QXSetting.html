@@ -1,0 +1,86 @@
+<div class="fast-now" id="currentLoc"></div>
+<div class="b-center">
+    <div class="qiye">
+        <table class="no-border-table long"style="height:66px;">
+            <tr>
+                <td width="22%">
+                    <div class="form-td big" style="width: 98%">
+                        <label class="left" style="width: 20%">时间</label>
+                        <div class="right" style="width: 80%">
+                            <input type="text" style="width: 47%;padding-right: 0px;padding-left: 2%;background: url(img/time-small.png) 90% center no-repeat;" class="input time star" id="startTime" placeholder="开始时间">
+                            <input type="text" style="width: 48%;padding-right: 0px;padding-left: 2%;background: url(img/time-small.png) 90% center no-repeat;" class="input time" id="endTime" placeholder="结束时间">
+                        </div>
+                    </div>
+                </td>
+                <td width="22%" align="center">
+                    <div class="form-td" style="width: 80%">
+                        <label class="left"  style="width: 40%">作业类型</label>
+                        <div class="right" style="width: 60%">
+                            <div class="input select-icon" id="worktype"></div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-td" style="width:268px;">
+                        <input type="text" class="seach" id="seachVal" style="width:228px;" placeholder="企业名称" />
+                        <i class="icon icon-seach" id="seach"></i>
+                    </div>
+                    <i class="icon icon-add" id="add"></i>
+                </td>
+                <td>
+                    <div class="form-td" style="border: none;"></div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            $('.form-td .up').click(function(){
+                $(this).children('.nav-ul-fl').show();
+            });
+            $(function(){
+                $(document).bind("click",function(e){
+                    var target = $(e.target);
+                    if(target.closest(".form-td .up").length == 0){
+                        $(".form-td .nav-ul-fl").hide();
+                    }
+                })
+            });
+        </script>
+        <div class="qiye-box">
+            <table class="none-border-table">
+                <colgroup>
+                    <col width="6%">
+                    <col width="15%">
+                    <col width="10%">
+                    <col width="15%">
+                    <col width="10%">
+                    <col width="15%">
+                    <col width="18%">
+                    <col width="12%">
+                    <col width="12%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <td>序列</td>
+                    <td>企业名称</td>
+                    <td>报备时间</td>
+                    <td>结束时间</td>
+                    <td>报备人</td>
+                    <td>联系电话</td>
+                    <td>作业类型</td>
+                    <td>状态</td>
+                    <td>操作 </td>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+            <div style="padding: 0px;text-align: center; width:81%;display: none;color:red" id="querynoresult">没有查询到相关的数据</div>
+            <div class="page" id = "page">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.clj.crmproj.mapper.SysLoginMapper" >
+    <select id="loginByMap" resultType="java.util.HashMap" parameterType="java.util.Map" >
+    select * from sys_user
+    where attr30 = '1'
+    and sys_user.attr1 = #{user,jdbcType=VARCHAR}
+    and sys_user.attr2 = #{pwd,jdbcType=VARCHAR}
+    </select>
+
+    <select id="menuByMap" resultType="java.util.HashMap" parameterType="java.util.Map" >
+    SELECT
+    sys_menu.sid,
+    sys_menu.attr1 as sname,
+    sys_menu.attr5 as className,
+    sys_menu.code as url
+    FROM
+    sys_user_role
+    right JOIN sys_menu ON sys_menu.attr30 = 1 and sys_menu.sid = sys_user_role.attr2 and sys_menu.attr3 = #{attr3,jdbcType=VARCHAR}
+    where sys_user_role.attr30 = 1 and sys_user_role.attr1 = #{attr1,jdbcType=VARCHAR}
+    ORDER BY sys_menu.attr2 ASC
+    </select>
+
+    <select id="menuByMap1" resultType="java.util.HashMap" parameterType="java.util.Map" >
+    select sid, attr6 as sname, attr5 as className, code as url from sys_menu
+    where attr30 = 1 and attr3 = #{attr2,jdbcType=VARCHAR}
+    ORDER BY attr2 ASC
+    </select>
+
+    <select id="countByMap" resultType="java.lang.Integer" parameterType="java.util.Map" >
+        <![CDATA[
+        select count(*)
+        from ${tableName}
+        where attr30 = 1
+        ]]>
+        <if test="sid != null">
+            and sid = #{sid,jdbcType=CHAR}
+        </if>
+        <if test="code != null" >
+            and code = #{code,jdbcType=VARCHAR}
+        </if>
+        <if test="attr1 != null" >
+            and attr1 = #{attr1,jdbcType=VARCHAR}
+        </if>
+        <if test="attr2 != null" >
+            and attr2 = #{attr2,jdbcType=VARCHAR}
+        </if>
+        <if test="attr3 != null" >
+            and attr3 = #{attr3,jdbcType=VARCHAR}
+        </if>
+        <if test="attr4 != null" >
+            and attr4 = #{attr4,jdbcType=VARCHAR}
+        </if>
+        <if test="attr5 != null" >
+            and attr5 = #{attr5,jdbcType=VARCHAR}
+        </if>
+        <if test="attr6 != null" >
+            and attr6 = #{attr6,jdbcType=VARCHAR}
+        </if>
+        <if test="attr7 != null" >
+            and attr7 = #{attr7,jdbcType=VARCHAR}
+        </if>
+        <if test="attr8 != null" >
+            and attr8 = #{attr8,jdbcType=VARCHAR}
+        </if>
+        <if test="attr9 != null" >
+            and attr9 = #{attr9,jdbcType=VARCHAR}
+        </if>
+        <if test="attr10 != null" >
+            and attr10 = #{attr10,jdbcType=VARCHAR}
+        </if>
+        <if test="attr11 != null" >
+            and attr11 = #{attr11,jdbcType=VARCHAR}
+        </if>
+        <if test="attr12 != null" >
+            and attr12 = #{attr12,jdbcType=VARCHAR}
+        </if>
+        <if test="attr13 != null" >
+            and attr13 = #{attr13,jdbcType=VARCHAR}
+        </if>
+        <if test="attr14 != null" >
+            and attr14 = #{attr14,jdbcType=VARCHAR}
+        </if>
+        <if test="attr15 != null" >
+            and attr15 = #{attr15,jdbcType=VARCHAR}
+        </if>
+        <if test="attr16 != null" >
+            and attr16 = #{attr16,jdbcType=VARCHAR}
+        </if>
+        <if test="attr17 != null" >
+            and attr17 = #{attr17,jdbcType=VARCHAR}
+        </if>
+        <if test="attr18 != null" >
+            and attr18 = #{attr18,jdbcType=VARCHAR}
+        </if>
+        <if test="attr19 != null" >
+            and attr19 = #{attr19,jdbcType=VARCHAR}
+        </if>
+        <if test="attr20 != null" >
+            and attr20 = #{attr20,jdbcType=VARCHAR}
+        </if>
+        <if test="attr21 != null" >
+            and attr21 = #{attr21,jdbcType=VARCHAR}
+        </if>
+        <if test="attr22 != null" >
+            and attr22 = #{attr22,jdbcType=VARCHAR}
+        </if>
+        <if test="attr23 != null" >
+            and attr23 = #{attr23,jdbcType=VARCHAR}
+        </if>
+        <if test="attr24 != null" >
+            and attr24 = #{attr24,jdbcType=VARCHAR}
+        </if>
+        <if test="attr25 != null" >
+            and attr25 = #{attr25,jdbcType=VARCHAR}
+        </if>
+        <if test="attr26 != null" >
+            and attr26 = #{attr26,jdbcType=VARCHAR}
+        </if>
+        <if test="attr27 != null" >
+            and attr27 = #{attr27,jdbcType=VARCHAR}
+        </if>
+        <if test="attr28 != null" >
+            and attr28 = #{attr28,jdbcType=VARCHAR}
+        </if>
+        <if test="attr29 != null" >
+            and attr29 = #{attr29,jdbcType=VARCHAR}
+        </if>
+        <if test="createby != null" >
+            and createBy = #{createby,jdbcType=VARCHAR}
+        </if>
+        <if test="createdate != null" >
+            and createDate = #{createdate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateby != null" >
+            and updateBy = #{updateby,jdbcType=VARCHAR}
+        </if>
+        <if test="updatedate != null" >
+            and updateDate = #{updatedate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="key != null" >
+            and (
+            attr1 LIKE CONCAT('%',#{key},'%')
+            or attr2 LIKE CONCAT('%',#{key},'%')
+            or attr3 LIKE CONCAT('%',#{key},'%')
+            or attr4 LIKE CONCAT('%',#{key},'%')
+            or attr5 LIKE CONCAT('%',#{key},'%')
+            or attr6 LIKE CONCAT('%',#{key},'%')
+            or attr7 LIKE CONCAT('%',#{key},'%')
+            or attr8 LIKE CONCAT('%',#{key},'%')
+            or attr9 LIKE CONCAT('%',#{key},'%')
+            or attr10 LIKE CONCAT('%',#{key},'%')
+            or attr11 LIKE CONCAT('%',#{key},'%')
+            or attr12 LIKE CONCAT('%',#{key},'%')
+            or attr13 LIKE CONCAT('%',#{key},'%')
+            or attr14 LIKE CONCAT('%',#{key},'%')
+            or attr15 LIKE CONCAT('%',#{key},'%')
+            or attr16 LIKE CONCAT('%',#{key},'%')
+            or attr17 LIKE CONCAT('%',#{key},'%')
+            or attr18 LIKE CONCAT('%',#{key},'%')
+            or attr19 LIKE CONCAT('%',#{key},'%')
+            or attr20 LIKE CONCAT('%',#{key},'%')
+            or attr21 LIKE CONCAT('%',#{key},'%')
+            or attr22 LIKE CONCAT('%',#{key},'%')
+            or attr23 LIKE CONCAT('%',#{key},'%')
+            or attr24 LIKE CONCAT('%',#{key},'%')
+            or attr25 LIKE CONCAT('%',#{key},'%')
+            or attr26 LIKE CONCAT('%',#{key},'%')
+            or attr27 LIKE CONCAT('%',#{key},'%')
+            or attr28 LIKE CONCAT('%',#{key},'%')
+            or attr29 LIKE CONCAT('%',#{key},'%')
+            )
+        </if>
+    </select>
+
+    <select id="allByMap" resultType="java.util.HashMap" parameterType="java.util.Map" >
+        select *
+        from ${tableName}
+        where attr30 = 1
+        <if test="sid != null">
+        and sid = #{sid,jdbcType=CHAR}
+        </if>
+        <if test="code != null" >
+        and code = #{code,jdbcType=VARCHAR}
+        </if>
+        <if test="attr1 != null" >
+        and attr1 = #{attr1,jdbcType=VARCHAR}
+        </if>
+        <if test="attr2 != null" >
+        and attr2 = #{attr2,jdbcType=VARCHAR}
+        </if>
+        <if test="attr3 != null" >
+        and attr3 = #{attr3,jdbcType=VARCHAR}
+        </if>
+        <if test="attr4 != null" >
+        and attr4 = #{attr4,jdbcType=VARCHAR}
+        </if>
+        <if test="attr5 != null" >
+        and attr5 = #{attr5,jdbcType=VARCHAR}
+        </if>
+        <if test="attr6 != null" >
+        and attr6 = #{attr6,jdbcType=VARCHAR}
+        </if>
+        <if test="attr7 != null" >
+        and attr7 = #{attr7,jdbcType=VARCHAR}
+        </if>
+        <if test="attr8 != null" >
+        and attr8 = #{attr8,jdbcType=VARCHAR}
+        </if>
+        <if test="attr9 != null" >
+        and attr9 = #{attr9,jdbcType=VARCHAR}
+        </if>
+        <if test="attr10 != null" >
+        and attr10 = #{attr10,jdbcType=VARCHAR}
+        </if>
+        <if test="attr11 != null" >
+        and attr11 = #{attr11,jdbcType=VARCHAR}
+        </if>
+        <if test="attr12 != null" >
+        and attr12 = #{attr12,jdbcType=VARCHAR}
+        </if>
+        <if test="attr13 != null" >
+        and attr13 = #{attr13,jdbcType=VARCHAR}
+        </if>
+        <if test="attr14 != null" >
+        and attr14 = #{attr14,jdbcType=VARCHAR}
+        </if>
+        <if test="attr15 != null" >
+        and attr15 = #{attr15,jdbcType=VARCHAR}
+        </if>
+        <if test="attr16 != null" >
+        and attr16 = #{attr16,jdbcType=VARCHAR}
+        </if>
+        <if test="attr17 != null" >
+        and attr17 = #{attr17,jdbcType=VARCHAR}
+        </if>
+        <if test="attr18 != null" >
+        and attr18 = #{attr18,jdbcType=VARCHAR}
+        </if>
+        <if test="attr19 != null" >
+        and attr19 = #{attr19,jdbcType=VARCHAR}
+        </if>
+        <if test="attr20 != null" >
+        and attr20 = #{attr20,jdbcType=VARCHAR}
+        </if>
+        <if test="attr21 != null" >
+        and attr21 = #{attr21,jdbcType=VARCHAR}
+        </if>
+        <if test="attr22 != null" >
+        and attr22 = #{attr22,jdbcType=VARCHAR}
+        </if>
+        <if test="attr23 != null" >
+        and attr23 = #{attr23,jdbcType=VARCHAR}
+        </if>
+        <if test="attr24 != null" >
+        and attr24 = #{attr24,jdbcType=VARCHAR}
+        </if>
+        <if test="attr25 != null" >
+        and attr25 = #{attr25,jdbcType=VARCHAR}
+        </if>
+        <if test="attr26 != null" >
+        and attr26 = #{attr26,jdbcType=VARCHAR}
+        </if>
+        <if test="attr27 != null" >
+        and attr27 = #{attr27,jdbcType=VARCHAR}
+        </if>
+        <if test="attr28 != null" >
+        and attr28 = #{attr28,jdbcType=VARCHAR}
+        </if>
+        <if test="attr29 != null" >
+        and attr29 = #{attr29,jdbcType=VARCHAR}
+        </if>
+        <if test="createby != null" >
+        and createBy = #{createby,jdbcType=VARCHAR}
+        </if>
+        <if test="createdate != null" >
+        and createDate = #{createdate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateby != null" >
+        and updateBy = #{updateby,jdbcType=VARCHAR}
+        </if>
+        <if test="updatedate != null" >
+        and updateDate = #{updatedate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="key != null" >
+            and (
+              attr1 LIKE CONCAT('%',#{key},'%')
+              or attr2 LIKE CONCAT('%',#{key},'%')
+              or attr3 LIKE CONCAT('%',#{key},'%')
+              or attr4 LIKE CONCAT('%',#{key},'%')
+              or attr5 LIKE CONCAT('%',#{key},'%')
+              or attr6 LIKE CONCAT('%',#{key},'%')
+              or attr7 LIKE CONCAT('%',#{key},'%')
+              or attr8 LIKE CONCAT('%',#{key},'%')
+              or attr9 LIKE CONCAT('%',#{key},'%')
+              or attr10 LIKE CONCAT('%',#{key},'%')
+              or attr11 LIKE CONCAT('%',#{key},'%')
+              or attr12 LIKE CONCAT('%',#{key},'%')
+              or attr13 LIKE CONCAT('%',#{key},'%')
+              or attr14 LIKE CONCAT('%',#{key},'%')
+              or attr15 LIKE CONCAT('%',#{key},'%')
+              or attr16 LIKE CONCAT('%',#{key},'%')
+              or attr17 LIKE CONCAT('%',#{key},'%')
+              or attr18 LIKE CONCAT('%',#{key},'%')
+              or attr19 LIKE CONCAT('%',#{key},'%')
+              or attr20 LIKE CONCAT('%',#{key},'%')
+              or attr21 LIKE CONCAT('%',#{key},'%')
+              or attr22 LIKE CONCAT('%',#{key},'%')
+              or attr23 LIKE CONCAT('%',#{key},'%')
+              or attr24 LIKE CONCAT('%',#{key},'%')
+              or attr25 LIKE CONCAT('%',#{key},'%')
+              or attr26 LIKE CONCAT('%',#{key},'%')
+              or attr27 LIKE CONCAT('%',#{key},'%')
+              or attr28 LIKE CONCAT('%',#{key},'%')
+              or attr29 LIKE CONCAT('%',#{key},'%')
+            )
+        </if>
+        ORDER BY
+        updateDate DESC
+        <if test="pageStart != null and pageSize != null">
+            limit #{pageStart,jdbcType=VARCHAR},#{pageSize,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <insert id="insertSelective" parameterType="java.util.Map" >
+        insert into ${tableName}
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="sid != null" >
+                sid,
+            </if>
+            <if test="code != null" >
+                code,
+            </if>
+            <if test="attr1 != null" >
+                attr1,
+            </if>
+            <if test="attr2 != null" >
+                attr2,
+            </if>
+            <if test="attr3 != null" >
+                attr3,
+            </if>
+            <if test="attr4 != null" >
+                attr4,
+            </if>
+            <if test="attr5 != null" >
+                attr5,
+            </if>
+            <if test="attr6 != null" >
+                attr6,
+            </if>
+            <if test="attr7 != null" >
+                attr7,
+            </if>
+            <if test="attr8 != null" >
+                attr8,
+            </if>
+            <if test="attr9 != null" >
+                attr9,
+            </if>
+            <if test="attr10 != null" >
+                attr10,
+            </if>
+            <if test="attr11 != null" >
+                attr11,
+            </if>
+            <if test="attr12 != null" >
+                attr12,
+            </if>
+            <if test="attr13 != null" >
+                attr13,
+            </if>
+            <if test="attr14 != null" >
+                attr14,
+            </if>
+            <if test="attr15 != null" >
+                attr15,
+            </if>
+            <if test="attr16 != null" >
+                attr16,
+            </if>
+            <if test="attr17 != null" >
+                attr17,
+            </if>
+            <if test="attr18 != null" >
+                attr18,
+            </if>
+            <if test="attr19 != null" >
+                attr19,
+            </if>
+            <if test="attr20 != null" >
+                attr20,
+            </if>
+            <if test="attr21 != null" >
+                attr21,
+            </if>
+            <if test="attr22 != null" >
+                attr22,
+            </if>
+            <if test="attr23 != null" >
+                attr23,
+            </if>
+            <if test="attr24 != null" >
+                attr24,
+            </if>
+            <if test="attr25 != null" >
+                attr25,
+            </if>
+            <if test="attr26 != null" >
+                attr26,
+            </if>
+            <if test="attr27 != null" >
+                attr27,
+            </if>
+            <if test="attr28 != null" >
+                attr28,
+            </if>
+            <if test="attr29 != null" >
+                attr29,
+            </if>
+            <if test="attr30 != null" >
+                attr30,
+            </if>
+            <if test="createby != null" >
+                createBy,
+            </if>
+            <if test="createdate != null" >
+                createDate,
+            </if>
+            <if test="updateby != null" >
+                updateBy,
+            </if>
+            <if test="updatedate != null" >
+                updateDate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="sid != null" >
+                #{sid,jdbcType=CHAR},
+            </if>
+            <if test="code != null" >
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="attr1 != null" >
+                #{attr1,jdbcType=VARCHAR},
+            </if>
+            <if test="attr2 != null" >
+                #{attr2,jdbcType=VARCHAR},
+            </if>
+            <if test="attr3 != null" >
+                #{attr3,jdbcType=VARCHAR},
+            </if>
+            <if test="attr4 != null" >
+                #{attr4,jdbcType=VARCHAR},
+            </if>
+            <if test="attr5 != null" >
+                #{attr5,jdbcType=VARCHAR},
+            </if>
+            <if test="attr6 != null" >
+                #{attr6,jdbcType=VARCHAR},
+            </if>
+            <if test="attr7 != null" >
+                #{attr7,jdbcType=VARCHAR},
+            </if>
+            <if test="attr8 != null" >
+                #{attr8,jdbcType=VARCHAR},
+            </if>
+            <if test="attr9 != null" >
+                #{attr9,jdbcType=VARCHAR},
+            </if>
+            <if test="attr10 != null" >
+                #{attr10,jdbcType=VARCHAR},
+            </if>
+            <if test="attr11 != null" >
+                #{attr11,jdbcType=VARCHAR},
+            </if>
+            <if test="attr12 != null" >
+                #{attr12,jdbcType=VARCHAR},
+            </if>
+            <if test="attr13 != null" >
+                #{attr13,jdbcType=VARCHAR},
+            </if>
+            <if test="attr14 != null" >
+                #{attr14,jdbcType=VARCHAR},
+            </if>
+            <if test="attr15 != null" >
+                #{attr15,jdbcType=VARCHAR},
+            </if>
+            <if test="attr16 != null" >
+                #{attr16,jdbcType=VARCHAR},
+            </if>
+            <if test="attr17 != null" >
+                #{attr17,jdbcType=VARCHAR},
+            </if>
+            <if test="attr18 != null" >
+                #{attr18,jdbcType=VARCHAR},
+            </if>
+            <if test="attr19 != null" >
+                #{attr19,jdbcType=VARCHAR},
+            </if>
+            <if test="attr20 != null" >
+                #{attr20,jdbcType=VARCHAR},
+            </if>
+            <if test="attr21 != null" >
+                #{attr21,jdbcType=VARCHAR},
+            </if>
+            <if test="attr22 != null" >
+                #{attr22,jdbcType=VARCHAR},
+            </if>
+            <if test="attr23 != null" >
+                #{attr23,jdbcType=VARCHAR},
+            </if>
+            <if test="attr24 != null" >
+                #{attr24,jdbcType=VARCHAR},
+            </if>
+            <if test="attr25 != null" >
+                #{attr25,jdbcType=VARCHAR},
+            </if>
+            <if test="attr26 != null" >
+                #{attr26,jdbcType=VARCHAR},
+            </if>
+            <if test="attr27 != null" >
+                #{attr27,jdbcType=VARCHAR},
+            </if>
+            <if test="attr28 != null" >
+                #{attr28,jdbcType=VARCHAR},
+            </if>
+            <if test="attr29 != null" >
+                #{attr29,jdbcType=VARCHAR},
+            </if>
+            <if test="attr30 != null" >
+                #{attr30,jdbcType=VARCHAR},
+            </if>
+            <if test="createby != null" >
+                #{createby,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null" >
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateby != null" >
+                #{updateby,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null" >
+                #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="java.util.Map" >
+        update ${tableName}
+        <set >
+            <if test="code != null" >
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="attr1 != null" >
+                attr1 = #{attr1,jdbcType=VARCHAR},
+            </if>
+            <if test="attr2 != null" >
+                attr2 = #{attr2,jdbcType=VARCHAR},
+            </if>
+            <if test="attr3 != null" >
+                attr3 = #{attr3,jdbcType=VARCHAR},
+            </if>
+            <if test="attr4 != null" >
+                attr4 = #{attr4,jdbcType=VARCHAR},
+            </if>
+            <if test="attr5 != null" >
+                attr5 = #{attr5,jdbcType=VARCHAR},
+            </if>
+            <if test="attr6 != null" >
+                attr6 = #{attr6,jdbcType=VARCHAR},
+            </if>
+            <if test="attr7 != null" >
+                attr7 = #{attr7,jdbcType=VARCHAR},
+            </if>
+            <if test="attr8 != null" >
+                attr8 = #{attr8,jdbcType=VARCHAR},
+            </if>
+            <if test="attr9 != null" >
+                attr9 = #{attr9,jdbcType=VARCHAR},
+            </if>
+            <if test="attr10 != null" >
+                attr10 = #{attr10,jdbcType=VARCHAR},
+            </if>
+            <if test="attr11 != null" >
+                attr11 = #{attr11,jdbcType=VARCHAR},
+            </if>
+            <if test="attr12 != null" >
+                attr12 = #{attr12,jdbcType=VARCHAR},
+            </if>
+            <if test="attr13 != null" >
+                attr13 = #{attr13,jdbcType=VARCHAR},
+            </if>
+            <if test="attr14 != null" >
+                attr14 = #{attr14,jdbcType=VARCHAR},
+            </if>
+            <if test="attr15 != null" >
+                attr15 = #{attr15,jdbcType=VARCHAR},
+            </if>
+            <if test="attr16 != null" >
+                attr16 = #{attr16,jdbcType=VARCHAR},
+            </if>
+            <if test="attr17 != null" >
+                attr17 = #{attr17,jdbcType=VARCHAR},
+            </if>
+            <if test="attr18 != null" >
+                attr18 = #{attr18,jdbcType=VARCHAR},
+            </if>
+            <if test="attr19 != null" >
+                attr19 = #{attr19,jdbcType=VARCHAR},
+            </if>
+            <if test="attr20 != null" >
+                attr20 = #{attr20,jdbcType=VARCHAR},
+            </if>
+            <if test="attr21 != null" >
+                attr21 = #{attr21,jdbcType=VARCHAR},
+            </if>
+            <if test="attr22 != null" >
+                attr22 = #{attr22,jdbcType=VARCHAR},
+            </if>
+            <if test="attr23 != null" >
+                attr23 = #{attr23,jdbcType=VARCHAR},
+            </if>
+            <if test="attr24 != null" >
+                attr24 = #{attr24,jdbcType=VARCHAR},
+            </if>
+            <if test="attr25 != null" >
+                attr25 = #{attr25,jdbcType=VARCHAR},
+            </if>
+            <if test="attr26 != null" >
+                attr26 = #{attr26,jdbcType=VARCHAR},
+            </if>
+            <if test="attr27 != null" >
+                attr27 = #{attr27,jdbcType=VARCHAR},
+            </if>
+            <if test="attr28 != null" >
+                attr28 = #{attr28,jdbcType=VARCHAR},
+            </if>
+            <if test="attr29 != null" >
+                attr29 = #{attr29,jdbcType=VARCHAR},
+            </if>
+            <if test="attr30 != null" >
+                attr30 = #{attr30,jdbcType=VARCHAR},
+            </if>
+            <if test="createby != null" >
+                createBy = #{createby,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null" >
+                createDate = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateby != null" >
+                updateBy = #{updateby,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null" >
+                updateDate = #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where sid = #{sid,jdbcType=CHAR}
+    </update>
+</mapper>

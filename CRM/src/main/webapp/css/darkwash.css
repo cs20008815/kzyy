@@ -1,0 +1,100 @@
+.tab-container h3{ /* Effects only the h3 headings inside the tabs */
+	font-size:147%;
+	color:#000000;
+}
+/* `Containers
+----------------------------------------------------------------------------------------------------*/
+
+#container{ /* Use this to position the entire tab module */
+	margin: 4px;
+	width:100%;
+	margin-top:1px;
+}
+
+.tab-container {
+	position: relative; /* It's important to keep this position relative and the absolute positions in this file the same */
+	width: 100%; 
+	z-index:0;
+}
+
+/* `Common Styles
+----------------------------------------------------------------------------------------------------*/
+
+/* Tabs */
+
+.tab-container > div { 
+	display: inline; 
+}
+
+.tab-container > div > a {  
+	position: relative !important; /* Keeps the tabs in line with each other */
+	text-decoration: none; 
+	color: #ffffff; 
+	display: inline-block;
+	padding: 4px 14px; 
+	font-size:15px;
+	font-weight:bold;
+	text-transform:uppercase;
+	margin:2px;
+	background: #000000; /* old browsers */
+	background: -moz-linear-gradient(top, #02b8d0 0%, #02b8d0 52%, #02b8d0 100%); /* firefox */
+	background: linear-gradient(top, #02b8d0 0%, #02b8d0 52%, #02b8d0 100%); /* future browsers */
+	-pie-background: linear-gradient(top, #000000 0%, #000000 52%, #000000 100%); /* pie for ie */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#02b8d0), color-stop(52%,#02b8d0), color-stop(100%,#02b8d0)); /* webkit */
+	/** filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4C4648', endColorstr='#2F2D2E',GradientType=0 ); **/ /* uncomment this when ie decides not to put boxes behind elements with a border radius */
+	border:dashed 2px #ffffff;
+	padding: 4px 14px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 0px;
+	border-radius: 3px;
+
+}
+
+.tab-container > div:not(:target) > a {
+}	
+
+.tab-container > div:target > a { 
+    background: none repeat scroll 0 0 #3992d0;
+    text-shadow: 0 1px 0 #000000;
+}	
+
+.tab-container > div > div { /* This is the container which holds the tab content */
+	background: #ffffff; /* old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 84%, #ffffff 100%); /* firefox */
+	background: linear-gradient(top, #ffffff 0%, #ffffff 84%, #ffffff 100%); /* future browsers */
+	-pie-background: linear-gradient(top, #ffffff 0%, #ffffff 84%, #ffffff 100%); /* pie for ie */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(84%,#ffffff), color-stop(100%,#ffffff)); /* webkit */
+	/** filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4C4648', endColorstr='#2F2D2E',GradientType=0 ); **/ /* uncomment this when ie decides not to put boxes behind elements with a border radius */
+	-moz-box-shadow: 0 0 12px 1px #eeeeee inset;
+	-webkit-box-shadow: 0 0 12px 1px #eeeeee inset;
+	box-shadow: 0 0 12px 1px #eeeeee inset;
+	z-index: -2;
+	top: 50px;
+	padding: 20px;
+	border:solid 1px #e8e8e8;
+	outline: 2px dashed #ffffff;
+	outline-offset: -8px; /*Delete if you don't want an offset*/
+	min-height:250px; /* Change this value if you need more or less content space */
+	position:absolute; /* Fixes IE 7 & 8 */
+}	
+.tab-container > div:not(:target) > div { 
+	position: absolute; /* This keeps the tab module contained */
+}
+
+.tab-container > div:target > div { 
+	position: absolute; 
+	z-index: 3 !important; /* Brings the content to the front depending on the tab that was clicked */ 
+}
+
+div.tab-content{ /* Styles the inner content of the tabs */
+	padding-bottom: 70px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+	
+.tab-content img{ 
+	margin:0 auto; 
+	display:block; 
+	padding-bottom: 20px;
+    padding-top: 10px;
+}

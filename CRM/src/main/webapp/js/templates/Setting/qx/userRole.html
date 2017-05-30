@@ -1,0 +1,79 @@
+<div class="fast-now" id = "currentLoc"></div>
+<div class="b-center">
+    <div class="qiye" style="height:600px;">
+        <p class="title">
+            <span class="js-icon"></span>
+            <span id="roleNameSpan">用户权限关联</span>
+        </p>
+        <div class="fl box">
+            <p class="cn-title">
+                <span>
+                    组织权限
+                    <span class="t-icon"></span>
+                </span>
+                <span class="fr menuSpan" id="chooseUserAllSpan" style="display: none;">
+                    <span id="chooseUserAll" class="chooseAllClass button chk checkbox_false_full"></span>
+                    全选
+                </span>
+            </p>
+            <ul id="roleTree" class="ztree" style="height: 420px; overflow-y: auto;">
+            </ul>
+        </div>
+        <div class="fl box">
+            <p class="cn-title">
+                <span>
+                    菜单权限
+                    <span class="t-icon"></span>
+                </span>
+                <span class="fr menuSpan" id="choseMenuAllSpan" style="display: none;">
+                    <span id="choseMenuAll" class="chooseAllClass button chk checkbox_false_full"></span>
+                    全选
+                </span>
+            </p>
+            <ul id="menuTree" class="ztree" style="height: 420px; overflow-y: auto"></ul>
+            <p class="cn-bottom">
+                <span class="sh-btn" id="submitMenu">
+                    确认授权
+                </span>
+            </p>
+            <p class="cn-bottom" style="display: none" id="alreadyMenu">
+                <span class="sh-icon">
+                    <i></i><span>已授权</span>
+                </span>
+            </p>
+        </div>
+        <div class="fl box">
+            <p class="cn-title">
+                <span>
+                    关联用户
+                </span>
+            </p>
+            <span  id="relatedUser">
+                <div class="cn-top" style="width: 95%;height: 320px;">
+                    <div class="fl top-search" style="text-align: center;margin-left: 20px;">
+                        <input class="search-bar" type="text" id="searchUserInput">
+                        <i class="search-icon" id="searchUser"></i>
+                    </div>
+                    <div style="">
+                        <div class="tableDiv">
+                            <div class="tr">
+                                <ul class="trul">
+                                    <li class="amount" style="width: 25%">用户</li>
+                                    <li class="amount" style="width: 25%">昵称</li>
+                                    <li class="amount" style="width: 25%">归属企业</li>
+                                    <li class="forum" style="width: 25%">选择</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="userItemTBody" class="tableDiv" style="width:100%;height: 260px;overflow-y: auto">
+
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 100%; height: 200px; overflow-y: auto;" id="userRole">
+
+                </div>
+            </span>
+        </div>
+    </div>
+</div>

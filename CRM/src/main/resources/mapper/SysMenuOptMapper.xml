@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.clj.crmproj.mapper.SysMenuOptMapper" >
+  <resultMap id="BaseResultMap" type="org.clj.crmproj.entity.SysMenuOpt" >
+    <id column="sid" property="sid" jdbcType="CHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="attr1" property="attr1" jdbcType="VARCHAR" />
+    <result column="attr2" property="attr2" jdbcType="VARCHAR" />
+    <result column="attr3" property="attr3" jdbcType="VARCHAR" />
+    <result column="attr4" property="attr4" jdbcType="VARCHAR" />
+    <result column="attr5" property="attr5" jdbcType="VARCHAR" />
+    <result column="attr6" property="attr6" jdbcType="VARCHAR" />
+    <result column="attr7" property="attr7" jdbcType="VARCHAR" />
+    <result column="attr8" property="attr8" jdbcType="VARCHAR" />
+    <result column="attr9" property="attr9" jdbcType="VARCHAR" />
+    <result column="attr10" property="attr10" jdbcType="VARCHAR" />
+    <result column="attr11" property="attr11" jdbcType="VARCHAR" />
+    <result column="attr12" property="attr12" jdbcType="VARCHAR" />
+    <result column="attr13" property="attr13" jdbcType="VARCHAR" />
+    <result column="attr14" property="attr14" jdbcType="VARCHAR" />
+    <result column="attr15" property="attr15" jdbcType="VARCHAR" />
+    <result column="attr16" property="attr16" jdbcType="VARCHAR" />
+    <result column="attr17" property="attr17" jdbcType="VARCHAR" />
+    <result column="attr18" property="attr18" jdbcType="VARCHAR" />
+    <result column="attr19" property="attr19" jdbcType="VARCHAR" />
+    <result column="attr20" property="attr20" jdbcType="VARCHAR" />
+    <result column="attr21" property="attr21" jdbcType="VARCHAR" />
+    <result column="attr22" property="attr22" jdbcType="VARCHAR" />
+    <result column="attr23" property="attr23" jdbcType="VARCHAR" />
+    <result column="attr24" property="attr24" jdbcType="VARCHAR" />
+    <result column="attr25" property="attr25" jdbcType="VARCHAR" />
+    <result column="attr26" property="attr26" jdbcType="VARCHAR" />
+    <result column="attr27" property="attr27" jdbcType="VARCHAR" />
+    <result column="attr28" property="attr28" jdbcType="VARCHAR" />
+    <result column="attr29" property="attr29" jdbcType="VARCHAR" />
+    <result column="attr30" property="attr30" jdbcType="VARCHAR" />
+    <result column="createBy" property="createby" jdbcType="VARCHAR" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="updateBy" property="updateby" jdbcType="VARCHAR" />
+    <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sid, code, attr1, attr2, attr3, attr4, attr5, attr6, attr7, attr8, attr9, attr10, 
+    attr11, attr12, attr13, attr14, attr15, attr16, attr17, attr18, attr19, attr20, attr21, 
+    attr22, attr23, attr24, attr25, attr26, attr27, attr28, attr29, attr30, createBy, 
+    createDate, updateBy, updateDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu_opt
+    where sid = #{sid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_menu_opt
+    where sid = #{sid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="org.clj.crmproj.entity.SysMenuOpt" >
+    insert into sys_menu_opt (sid, code, attr1, 
+      attr2, attr3, attr4, 
+      attr5, attr6, attr7, 
+      attr8, attr9, attr10, 
+      attr11, attr12, attr13, 
+      attr14, attr15, attr16, 
+      attr17, attr18, attr19, 
+      attr20, attr21, attr22, 
+      attr23, attr24, attr25, 
+      attr26, attr27, attr28, 
+      attr29, attr30, createBy, 
+      createDate, updateBy, updateDate
+      )
+    values (#{sid,jdbcType=CHAR}, #{code,jdbcType=VARCHAR}, #{attr1,jdbcType=VARCHAR}, 
+      #{attr2,jdbcType=VARCHAR}, #{attr3,jdbcType=VARCHAR}, #{attr4,jdbcType=VARCHAR}, 
+      #{attr5,jdbcType=VARCHAR}, #{attr6,jdbcType=VARCHAR}, #{attr7,jdbcType=VARCHAR}, 
+      #{attr8,jdbcType=VARCHAR}, #{attr9,jdbcType=VARCHAR}, #{attr10,jdbcType=VARCHAR}, 
+      #{attr11,jdbcType=VARCHAR}, #{attr12,jdbcType=VARCHAR}, #{attr13,jdbcType=VARCHAR}, 
+      #{attr14,jdbcType=VARCHAR}, #{attr15,jdbcType=VARCHAR}, #{attr16,jdbcType=VARCHAR}, 
+      #{attr17,jdbcType=VARCHAR}, #{attr18,jdbcType=VARCHAR}, #{attr19,jdbcType=VARCHAR}, 
+      #{attr20,jdbcType=VARCHAR}, #{attr21,jdbcType=VARCHAR}, #{attr22,jdbcType=VARCHAR}, 
+      #{attr23,jdbcType=VARCHAR}, #{attr24,jdbcType=VARCHAR}, #{attr25,jdbcType=VARCHAR}, 
+      #{attr26,jdbcType=VARCHAR}, #{attr27,jdbcType=VARCHAR}, #{attr28,jdbcType=VARCHAR}, 
+      #{attr29,jdbcType=VARCHAR}, #{attr30,jdbcType=VARCHAR}, #{createby,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{updateby,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.clj.crmproj.entity.SysMenuOpt" >
+    insert into sys_menu_opt
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="attr1 != null" >
+        attr1,
+      </if>
+      <if test="attr2 != null" >
+        attr2,
+      </if>
+      <if test="attr3 != null" >
+        attr3,
+      </if>
+      <if test="attr4 != null" >
+        attr4,
+      </if>
+      <if test="attr5 != null" >
+        attr5,
+      </if>
+      <if test="attr6 != null" >
+        attr6,
+      </if>
+      <if test="attr7 != null" >
+        attr7,
+      </if>
+      <if test="attr8 != null" >
+        attr8,
+      </if>
+      <if test="attr9 != null" >
+        attr9,
+      </if>
+      <if test="attr10 != null" >
+        attr10,
+      </if>
+      <if test="attr11 != null" >
+        attr11,
+      </if>
+      <if test="attr12 != null" >
+        attr12,
+      </if>
+      <if test="attr13 != null" >
+        attr13,
+      </if>
+      <if test="attr14 != null" >
+        attr14,
+      </if>
+      <if test="attr15 != null" >
+        attr15,
+      </if>
+      <if test="attr16 != null" >
+        attr16,
+      </if>
+      <if test="attr17 != null" >
+        attr17,
+      </if>
+      <if test="attr18 != null" >
+        attr18,
+      </if>
+      <if test="attr19 != null" >
+        attr19,
+      </if>
+      <if test="attr20 != null" >
+        attr20,
+      </if>
+      <if test="attr21 != null" >
+        attr21,
+      </if>
+      <if test="attr22 != null" >
+        attr22,
+      </if>
+      <if test="attr23 != null" >
+        attr23,
+      </if>
+      <if test="attr24 != null" >
+        attr24,
+      </if>
+      <if test="attr25 != null" >
+        attr25,
+      </if>
+      <if test="attr26 != null" >
+        attr26,
+      </if>
+      <if test="attr27 != null" >
+        attr27,
+      </if>
+      <if test="attr28 != null" >
+        attr28,
+      </if>
+      <if test="attr29 != null" >
+        attr29,
+      </if>
+      <if test="attr30 != null" >
+        attr30,
+      </if>
+      <if test="createby != null" >
+        createBy,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="updateby != null" >
+        updateBy,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=CHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null" >
+        #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null" >
+        #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="attr3 != null" >
+        #{attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="attr4 != null" >
+        #{attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="attr5 != null" >
+        #{attr5,jdbcType=VARCHAR},
+      </if>
+      <if test="attr6 != null" >
+        #{attr6,jdbcType=VARCHAR},
+      </if>
+      <if test="attr7 != null" >
+        #{attr7,jdbcType=VARCHAR},
+      </if>
+      <if test="attr8 != null" >
+        #{attr8,jdbcType=VARCHAR},
+      </if>
+      <if test="attr9 != null" >
+        #{attr9,jdbcType=VARCHAR},
+      </if>
+      <if test="attr10 != null" >
+        #{attr10,jdbcType=VARCHAR},
+      </if>
+      <if test="attr11 != null" >
+        #{attr11,jdbcType=VARCHAR},
+      </if>
+      <if test="attr12 != null" >
+        #{attr12,jdbcType=VARCHAR},
+      </if>
+      <if test="attr13 != null" >
+        #{attr13,jdbcType=VARCHAR},
+      </if>
+      <if test="attr14 != null" >
+        #{attr14,jdbcType=VARCHAR},
+      </if>
+      <if test="attr15 != null" >
+        #{attr15,jdbcType=VARCHAR},
+      </if>
+      <if test="attr16 != null" >
+        #{attr16,jdbcType=VARCHAR},
+      </if>
+      <if test="attr17 != null" >
+        #{attr17,jdbcType=VARCHAR},
+      </if>
+      <if test="attr18 != null" >
+        #{attr18,jdbcType=VARCHAR},
+      </if>
+      <if test="attr19 != null" >
+        #{attr19,jdbcType=VARCHAR},
+      </if>
+      <if test="attr20 != null" >
+        #{attr20,jdbcType=VARCHAR},
+      </if>
+      <if test="attr21 != null" >
+        #{attr21,jdbcType=VARCHAR},
+      </if>
+      <if test="attr22 != null" >
+        #{attr22,jdbcType=VARCHAR},
+      </if>
+      <if test="attr23 != null" >
+        #{attr23,jdbcType=VARCHAR},
+      </if>
+      <if test="attr24 != null" >
+        #{attr24,jdbcType=VARCHAR},
+      </if>
+      <if test="attr25 != null" >
+        #{attr25,jdbcType=VARCHAR},
+      </if>
+      <if test="attr26 != null" >
+        #{attr26,jdbcType=VARCHAR},
+      </if>
+      <if test="attr27 != null" >
+        #{attr27,jdbcType=VARCHAR},
+      </if>
+      <if test="attr28 != null" >
+        #{attr28,jdbcType=VARCHAR},
+      </if>
+      <if test="attr29 != null" >
+        #{attr29,jdbcType=VARCHAR},
+      </if>
+      <if test="attr30 != null" >
+        #{attr30,jdbcType=VARCHAR},
+      </if>
+      <if test="createby != null" >
+        #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null" >
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.clj.crmproj.entity.SysMenuOpt" >
+    update sys_menu_opt
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null" >
+        attr1 = #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null" >
+        attr2 = #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="attr3 != null" >
+        attr3 = #{attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="attr4 != null" >
+        attr4 = #{attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="attr5 != null" >
+        attr5 = #{attr5,jdbcType=VARCHAR},
+      </if>
+      <if test="attr6 != null" >
+        attr6 = #{attr6,jdbcType=VARCHAR},
+      </if>
+      <if test="attr7 != null" >
+        attr7 = #{attr7,jdbcType=VARCHAR},
+      </if>
+      <if test="attr8 != null" >
+        attr8 = #{attr8,jdbcType=VARCHAR},
+      </if>
+      <if test="attr9 != null" >
+        attr9 = #{attr9,jdbcType=VARCHAR},
+      </if>
+      <if test="attr10 != null" >
+        attr10 = #{attr10,jdbcType=VARCHAR},
+      </if>
+      <if test="attr11 != null" >
+        attr11 = #{attr11,jdbcType=VARCHAR},
+      </if>
+      <if test="attr12 != null" >
+        attr12 = #{attr12,jdbcType=VARCHAR},
+      </if>
+      <if test="attr13 != null" >
+        attr13 = #{attr13,jdbcType=VARCHAR},
+      </if>
+      <if test="attr14 != null" >
+        attr14 = #{attr14,jdbcType=VARCHAR},
+      </if>
+      <if test="attr15 != null" >
+        attr15 = #{attr15,jdbcType=VARCHAR},
+      </if>
+      <if test="attr16 != null" >
+        attr16 = #{attr16,jdbcType=VARCHAR},
+      </if>
+      <if test="attr17 != null" >
+        attr17 = #{attr17,jdbcType=VARCHAR},
+      </if>
+      <if test="attr18 != null" >
+        attr18 = #{attr18,jdbcType=VARCHAR},
+      </if>
+      <if test="attr19 != null" >
+        attr19 = #{attr19,jdbcType=VARCHAR},
+      </if>
+      <if test="attr20 != null" >
+        attr20 = #{attr20,jdbcType=VARCHAR},
+      </if>
+      <if test="attr21 != null" >
+        attr21 = #{attr21,jdbcType=VARCHAR},
+      </if>
+      <if test="attr22 != null" >
+        attr22 = #{attr22,jdbcType=VARCHAR},
+      </if>
+      <if test="attr23 != null" >
+        attr23 = #{attr23,jdbcType=VARCHAR},
+      </if>
+      <if test="attr24 != null" >
+        attr24 = #{attr24,jdbcType=VARCHAR},
+      </if>
+      <if test="attr25 != null" >
+        attr25 = #{attr25,jdbcType=VARCHAR},
+      </if>
+      <if test="attr26 != null" >
+        attr26 = #{attr26,jdbcType=VARCHAR},
+      </if>
+      <if test="attr27 != null" >
+        attr27 = #{attr27,jdbcType=VARCHAR},
+      </if>
+      <if test="attr28 != null" >
+        attr28 = #{attr28,jdbcType=VARCHAR},
+      </if>
+      <if test="attr29 != null" >
+        attr29 = #{attr29,jdbcType=VARCHAR},
+      </if>
+      <if test="attr30 != null" >
+        attr30 = #{attr30,jdbcType=VARCHAR},
+      </if>
+      <if test="createby != null" >
+        createBy = #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null" >
+        updateBy = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.clj.crmproj.entity.SysMenuOpt" >
+    update sys_menu_opt
+    set code = #{code,jdbcType=VARCHAR},
+      attr1 = #{attr1,jdbcType=VARCHAR},
+      attr2 = #{attr2,jdbcType=VARCHAR},
+      attr3 = #{attr3,jdbcType=VARCHAR},
+      attr4 = #{attr4,jdbcType=VARCHAR},
+      attr5 = #{attr5,jdbcType=VARCHAR},
+      attr6 = #{attr6,jdbcType=VARCHAR},
+      attr7 = #{attr7,jdbcType=VARCHAR},
+      attr8 = #{attr8,jdbcType=VARCHAR},
+      attr9 = #{attr9,jdbcType=VARCHAR},
+      attr10 = #{attr10,jdbcType=VARCHAR},
+      attr11 = #{attr11,jdbcType=VARCHAR},
+      attr12 = #{attr12,jdbcType=VARCHAR},
+      attr13 = #{attr13,jdbcType=VARCHAR},
+      attr14 = #{attr14,jdbcType=VARCHAR},
+      attr15 = #{attr15,jdbcType=VARCHAR},
+      attr16 = #{attr16,jdbcType=VARCHAR},
+      attr17 = #{attr17,jdbcType=VARCHAR},
+      attr18 = #{attr18,jdbcType=VARCHAR},
+      attr19 = #{attr19,jdbcType=VARCHAR},
+      attr20 = #{attr20,jdbcType=VARCHAR},
+      attr21 = #{attr21,jdbcType=VARCHAR},
+      attr22 = #{attr22,jdbcType=VARCHAR},
+      attr23 = #{attr23,jdbcType=VARCHAR},
+      attr24 = #{attr24,jdbcType=VARCHAR},
+      attr25 = #{attr25,jdbcType=VARCHAR},
+      attr26 = #{attr26,jdbcType=VARCHAR},
+      attr27 = #{attr27,jdbcType=VARCHAR},
+      attr28 = #{attr28,jdbcType=VARCHAR},
+      attr29 = #{attr29,jdbcType=VARCHAR},
+      attr30 = #{attr30,jdbcType=VARCHAR},
+      createBy = #{createby,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateBy = #{updateby,jdbcType=VARCHAR},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP}
+    where sid = #{sid,jdbcType=CHAR}
+  </update>
+</mapper>

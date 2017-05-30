@@ -1,0 +1,12 @@
+<%_.each(obj,function(data,value){%>
+<tr>
+    <td><%=data.attr1%></td>
+    <td><%=data.attr17%></td>
+    <td><%=data.attr19%></td>
+    <td align="center">
+        <!--<i class="icon icon-ck" id="look" sid = "<%=data.sid%>" title="查看详情" ></i>-->
+        <i class="icon icon-bb" id = "change" sid = "<%=data.sid%>" title="修改" ></i>
+        <i class="icon icon-shanc" id = "delete" sid = "<%=data.sid%>" title="删除" ></i>
+    </td>
+</tr>
+<%})%>

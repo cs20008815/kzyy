@@ -1,0 +1,35 @@
+<div class="body-left" style="position: static;margin-bottom: -1000px;padding-bottom: 1000px;">
+    <div class="nav-top">导航栏	<div class="nav-more"><i class="icon icon-more" name = "clickmore"></i></div> </div>
+    <ul class="nav-ul" id = "menu">
+        <%
+        _.each(obj,function(item,i){
+        %>
+        <!--一级菜单-->
+        <li class="nav-li"  menuname="<%=item.sname%>">
+            <% if(item.menu.length > 0){ %>
+            <div class="inactive" name = "menuli">
+                <i class="icon <%=item.className%>"></i>
+                <%=item.sname%>
+            </div>
+            <!--二级菜单!-->
+            <ul class="nav-ul-2" style = "display: none;">
+                <%_.each(item.menu,function(twochildrenItem,j){%>
+                <li class="nav-li-2">
+                    <%if(item.menu.length > 0){%>
+                    <a class="a-wrap" menuid="<%=twochildrenItem.sid%>" href="#<%=twochildrenItem.url%>"><%=twochildrenItem.sname%></a>
+                    <%}else {%>
+                        <%=twochildrenItem.sname%>
+                    <%}%>
+                </li>
+                <%})%>
+            </ul>
+            <%}else{%>
+            <i class="icon <%=item.className%>"></i>
+            <a href="#<%=item.url%>" menuid="<%=item.sid%>"  class="a-wrap" style = "width:124px;">
+                <%=item.sname%>
+            </a>
+            <%}%>
+        </li>
+        <%})%>
+    </ul>
+</div>
