@@ -427,7 +427,7 @@ input { outline: medium none; }
 .border-table .bigred .icon-ck{position:absolute;right:20px;top:1px;}
 .border-table .big-mes{font-size:13px;color:#7D848A;line-height:20px;padding:15px;padding-top:0;text-indent:2em;text-align:left;}
 /*����*/
-.tanc{font-family: 宋体;position:fixed;z-index:9999;top:0;left:0;width:100%;height:100%;overflow-y: auto;overflow-x: auto;display: block;}
+.tanc{font-family: 宋体;position:fixed;z-index:999;top:0;left:0;width:100%;height:100%;overflow-y: auto;overflow-x: auto;display: block;}
 .tanc .bgcc{background:#020202;width:100%;height:100%;left:0px;right:0px; filter:alpha(opacity=50);  -moz-opacity:0.5;-khtml-opacity:0.5; opacity: 0.5; z-index:-1;}
 .tanc .bgcontent{
     position:absolute ;

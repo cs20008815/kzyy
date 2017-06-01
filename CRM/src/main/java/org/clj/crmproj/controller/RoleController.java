@@ -1,6 +1,5 @@
 package org.clj.crmproj.controller;
 
-import org.clj.crmproj.entity.SysUserRole;
 import org.clj.crmproj.service.LoginService;
 import org.clj.crmproj.util.EhcacheUtil;
 import org.clj.crmproj.util.Response;

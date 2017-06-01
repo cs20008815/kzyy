@@ -11,6 +11,11 @@ public interface SysLoginMapper {
     List<Map> menuByMap1(Map map);
 
     List<Map> allByMap(Map map);
+
+    List<Map> allByGuestFP(Map map);
+
+    List<Map> queryPage(Map map);
+
     int countByMap(Map map);
 
     int insertSelective(Map map);

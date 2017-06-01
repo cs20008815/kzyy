@@ -25,8 +25,23 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public List<Map> allByMap(Map map){
-//        PageHelper.startPage(1, 20); // ºËĞÄ·ÖÒ³´úÂë
         return sysLoginMapper.allByMap(map);
+    }
+
+    @Override
+    public List<Map> allByGuestFP(Map map){
+        int pageNum = Integer.parseInt(map.get("pageNum").toString());
+        int pageSize = Integer.parseInt(map.get("pageSize").toString());
+        PageHelper.startPage(pageNum, pageSize); // æ ¸å¿ƒåˆ†é¡µä»£ç 
+        return sysLoginMapper.allByGuestFP(map);
+    }
+
+    @Override
+    public List<Map> queryPage(Map map){
+        int pageNum = Integer.parseInt(map.get("pageNum").toString());
+        int pageSize = Integer.parseInt(map.get("pageSize").toString());
+        PageHelper.startPage(pageNum, pageSize); // æ ¸å¿ƒåˆ†é¡µä»£ç 
+        return sysLoginMapper.queryPage(map);
     }
 
     @Override

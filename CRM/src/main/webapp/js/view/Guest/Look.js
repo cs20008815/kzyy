@@ -24,9 +24,11 @@ define(['jquery', 'underscore', 'backbone', 'iziToast'
                     url : 'api/guest/query/'+this.option.id,
                     async: false,
                     success: function (data) {
+                        console.log(data);
                         if(data && data.get("status") == "S"){
                             var entity = data.get("output");
-                            _this.$el.html(_this.templates.look(entity));
+                            console.log(entity);
+                            _this.$el.html(_this.templates.look(entity[0]));
                         }else{
                             iziNotyf.alert("查询失败");
                         }

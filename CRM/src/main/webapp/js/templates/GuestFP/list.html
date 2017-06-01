@@ -1,10 +1,10 @@
 <%_.each(obj,function(data,value){%>
 <tr>
     <td><%=data.attr1%></td>
-    <td><%=data.attr2%></td>
     <td><%=data.attr3%></td>
-    <td><%=data.attr17%></td>
-    <td><%=data.attr19%></td>
+    <td><%=data.attr4%></td>
+    <td><%=tools.toDate(data.createDate)%></td>
+    <td><%=tools.toDate(data.updateDate)%></td>
     <td align="center">
         <span class="patrolcheckboxlabel" sid="<%=data.sid%>" style=""></span>
     </td>

@@ -20,63 +20,63 @@ define(['jquery', 'underscore', 'backbone', 'iziToast', 'autoselect', 'laydate'
             render: function () {
                 this.$el.html(this.templates.addTemplate());
 
-                this.$("#attr8").autoselect({
+                this.$("#attr9").autoselect({
                     source:"api/list/querySchool",
                     searchParam:"key",
                     label:["attr1"],
                     id:"attr1"
                 });
 
-                this.$("#attr9").autoselect({
+                this.$("#attr10").autoselect({
                     source:"api/list/query/3",
                     searchParam:"key",
                     label:["attr1"],
                     id:"attr1"
                 });
 
-                this.$("#attr10").autoselect({
+                this.$("#attr11").autoselect({
                     source:"api/list/query/4",
                     searchParam:"key",
                     label:["attr1"],
                     id:"attr1"
                 });
 
-                this.$("#attr11").autoselect({
+                this.$("#attr12").autoselect({
                     source:"api/list/query/5",
                     searchParam:"key",
                     label:["attr1"],
                     id:"attr1"
                 });
 
-                this.$("#attr13").autoselect({
+                this.$("#attr14").autoselect({
                     source:"api/list/query/6",
                     searchParam:"key",
                     label:["attr1"],
                     id:"attr1"
                 });
 
-                this.$("#attr14").autoselect({
+                this.$("#attr15").autoselect({
                     source:"api/list/query/7",
                     searchParam:"key",
                     label:["attr1"],
                     id:"attr1"
                 });
 
-                this.$("#attr15").autoselect({
+                this.$("#attr16").autoselect({
                     source:"api/list/query/8",
                     searchParam:"key",
                     label:["attr1"],
                     id:"attr1"
                 });
 
-                this.$("#attr3").autoselect({
+                this.$("#attr4").autoselect({
                     source:"api/list/query/1",
                     searchParam:"key",
                     label:["attr1"],
                     id:"attr1"
                 });
 
-                this.$("#attr6").autoselect({
+                this.$("#attr7").autoselect({
                     source:"api/list/query/2",
                     searchParam:"key",
                     label:["attr1"],
@@ -85,39 +85,29 @@ define(['jquery', 'underscore', 'backbone', 'iziToast', 'autoselect', 'laydate'
             },
             events: {
                 "click #save":"save",
-                "focus #attr7":"chooseDate",
+                "focus #attr8":"chooseDate",
                 "click #cancel":"onCancel"
             },
             save: function(){
                 var _this = this;
-                var opt = {
-                    attr1:this.$("#attr1").val(),
-                    attr2:this.$("#attr2").val(),
-                    attr3:this.$("#attr3").attr("inputid"),
-                    attr4:this.$("#attr4").val(),
-                    attr5:this.$("#attr5").val(),
-                    attr6:this.$("#attr6").attr("inputid"),
-                    attr7:this.$("#attr7").val(),
-                    attr8:this.$("#attr8").attr("inputid"),
-                    attr9:this.$("#attr9").attr("inputid"),
-                    attr10:this.$("#attr10").attr("inputid"),
-                    attr11:this.$("#attr11").attr("inputid"),
-                    attr12:this.$("#attr12").val(),
-                    attr13:this.$("#attr13").attr("inputid"),
-                    attr14:this.$("#attr14").attr("inputid"),
-                    attr15:this.$("#attr15").attr("inputid")
-                };
+
+                var inputs = this.$("input");
+                var opt = [];
+                for(var i = 0; i < inputs.length; i++){
+                    opt[$(inputs[i]).attr('id')] = $(inputs[i]).val();
+                }
 
                 var model = new Backbone.Model;
                 model.fetchEx(opt,{
                     url : 'api/guest/add',
                     success: function (data) {
                         if(data && data.get("status") == "S"){
-                            //_this.option.callback();
+                            _this.option.callback();
                             iziNotyf.confirm("添加成功");
                             _this.onCancel();
                         }else{
-                            iziNotyf.alert("添加失败");
+                            iziNotyf.alert(data.get("message"));
+                            console.log(data.get("message"));
                         }
                     }
                 });
@@ -128,11 +118,11 @@ define(['jquery', 'underscore', 'backbone', 'iziToast', 'autoselect', 'laydate'
             chooseDate:function(e){
                 var _this = this;
                 laydate({
-                    elem: '#attr7',
+                    elem: '#attr8',
                     format:"YYYY-MM-DD hh:MM:ss",
                     istime: true,
                     choose : function(data){
-                        _this.$("#attr7").blur();
+                        _this.$("#attr8").blur();
                     }
                 });
             }

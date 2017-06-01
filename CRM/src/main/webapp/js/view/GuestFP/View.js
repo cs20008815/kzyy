@@ -23,7 +23,7 @@ define(['jquery', 'underscore', 'backbone'
                 "List": _.template(List)
             },
             initialize: function (option) {
-                _.bindAll(this, "queryDate", "PageCallback");
+                _.bindAll(this, "query", "queryDate", "PageCallback");
                 this.pageSize = 10;//每页显示条数
 
                 this.render();
@@ -34,7 +34,7 @@ define(['jquery', 'underscore', 'backbone'
                 this.$el.html(this.templates.View());
 
                 this.$("#name").bind("change",function(){
-                    _this.queryDate();
+                    _this.query();
                 });
 
                 this.$("#user").autoselect({
@@ -44,7 +44,7 @@ define(['jquery', 'underscore', 'backbone'
                     id:"sid"
                 });
 
-                this.queryDate();
+                this.query();
             },
             events: {
                 "click #add":"add",
@@ -52,8 +52,8 @@ define(['jquery', 'underscore', 'backbone'
                 "click #look":"look",
                 "click #change":"change",
                 "click #delete":"delete",
-                "input #name":"queryDate",
-                "click #search":"queryDate",
+                "input #name":"query",
+                "click #search":"query",
                 "click #all":"all"
             },
             checkboxlabel: function(e){
@@ -78,63 +78,66 @@ define(['jquery', 'underscore', 'backbone'
                     this.$("span[sid]").addClass("yes");
                 }
             },
-            queryDate: function(){
+            query: function(){
                 var _this = this;
-
                 //传递分页参数
                 var pageOpt = {
-                    "pageNum": 1,
-                    "pageSize": this.pageSize,
-                    pageStart:0
+                    pageNum: 1,
+                    pageSize: _this.pageSize
                 };
-
-                if("" != _this.$("#name").val()){
-                    pageOpt.attr1 = _this.$("#name").val();
-                }
-
-                this.$("#querynoresult").css({"display": "none"});
-                var userModel = new Backbone.Model;
-                userModel.fetchEx(pageOpt,{
-                    url : 'api/guest/queryPageTMK',
-                    success: function (data) {
-                        var entity = data.get("output");
-                        console.log(entity);
-                        this.$("#tbody").html(_this.templates.List(entity.pageData));
-                        var totalNum = entity.pageCount;  //总页数
-                        var pageView = new PageView({
-                            callBack: _this.PageCallback,
-                            model: {
-                                "totalNum": totalNum,
-                                "pageSize": _this.pageSize,
-                                "pageIndex": 1
-                            }
-                        });
-                        this.$("#page").html(pageView.el);
-                        if(!entity.pageData.length > 0){
-                            _this.$el.find("#querynoresult").css({"display": "block"});
-                            return;
-                        }
-                    }
-                });
+                _this.queryDate(pageOpt);
             },
             PageCallback: function(page_id, panel){
                 var _this = this;
-
+                console.log(page_id);
                 //传递分页参数
                 var pageOpt = {
-                    "pageNum": page_id,
-                    "pageSize": this.pageSize,
-                    pageStart:((page_id-1)*this.pageSize)
+                    pageNum: page_id,
+                    pageSize: _this.pageSize
                 };
-
-                _this.$("#tbody").empty();
-                this.$("#querynoresult").css({"display": "none"});
-                var model = new Backbone.Model;
-                model.fetchEx(pageOpt,{
-                    url : 'api/guest/queryPage',
+                _this.queryDate(pageOpt);
+            },
+            queryDate: function(pageOpt){
+                var _this = this;
+                if("" != _this.$("#name").val()){
+                    pageOpt.key = _this.$("#name").val();
+                }
+                _this.$("#querynoresult").css({"display": "none"});
+                var userModel = new Backbone.Model;
+                userModel.fetchEx(pageOpt,{
+                    url : 'api/guest/getGuestFPList',
                     success: function (data) {
-                        var entity = data.get("output");
-                        this.$("#tbody").html(_this.templates.List(entity.pageData));
+                        if(data.get("status") == "S"){
+                            var entity = data.get("output");
+                            var entityData = entity.data;
+                            var entityPage = entity.page;
+
+                            if(!entityData.length > 0){
+                                _this.$el.find("#querynoresult").css({"display": "block"});
+                                _this.$("#tbody").html("");
+                                _this.$("#page").css({"display": "none"});
+                                return;
+                            }
+
+                            if(pageOpt.pageNum == 1){
+                                _this.$("#tbody").html(_this.templates.List(entityData));
+                                var totalNum = entityPage.total;  //总页数
+                                var pageView = new PageView({
+                                    callBack: _this.PageCallback,
+                                    model: {
+                                        "totalNum": totalNum,
+                                        "pageSize": _this.pageSize,
+                                        "pageIndex": _this.pageNum
+                                    }
+                                });
+                                _this.$("#page").css({"display": "block"});
+                                this.$("#page").html(pageView.el);
+                            }else{
+                                this.$("#tbody").html(_this.templates.List(entityData));
+                            }
+                        }else{
+
+                        }
                     }
                 });
             },

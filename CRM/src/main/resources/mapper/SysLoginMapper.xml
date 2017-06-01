@@ -322,6 +322,193 @@
         </if>
     </select>
 
+    <select id="allByGuestFP" resultType="java.util.HashMap" parameterType="java.util.Map" >
+        select *
+        from ${tableName}
+        where attr30 = 1 and (attr17 is null or attr17 = '')
+        <if test="key != null" >
+            and (
+            attr1 LIKE CONCAT('%',#{key},'%')
+            or attr2 LIKE CONCAT('%',#{key},'%')
+            or attr3 LIKE CONCAT('%',#{key},'%')
+            or attr4 LIKE CONCAT('%',#{key},'%')
+            or attr5 LIKE CONCAT('%',#{key},'%')
+            or attr6 LIKE CONCAT('%',#{key},'%')
+            or attr7 LIKE CONCAT('%',#{key},'%')
+            or attr8 LIKE CONCAT('%',#{key},'%')
+            or attr9 LIKE CONCAT('%',#{key},'%')
+            or attr10 LIKE CONCAT('%',#{key},'%')
+            or attr11 LIKE CONCAT('%',#{key},'%')
+            or attr12 LIKE CONCAT('%',#{key},'%')
+            or attr13 LIKE CONCAT('%',#{key},'%')
+            or attr14 LIKE CONCAT('%',#{key},'%')
+            or attr15 LIKE CONCAT('%',#{key},'%')
+            or attr16 LIKE CONCAT('%',#{key},'%')
+            or attr17 LIKE CONCAT('%',#{key},'%')
+            or attr18 LIKE CONCAT('%',#{key},'%')
+            or attr19 LIKE CONCAT('%',#{key},'%')
+            or attr20 LIKE CONCAT('%',#{key},'%')
+            or attr21 LIKE CONCAT('%',#{key},'%')
+            or attr22 LIKE CONCAT('%',#{key},'%')
+            or attr23 LIKE CONCAT('%',#{key},'%')
+            or attr24 LIKE CONCAT('%',#{key},'%')
+            or attr25 LIKE CONCAT('%',#{key},'%')
+            or attr26 LIKE CONCAT('%',#{key},'%')
+            or attr27 LIKE CONCAT('%',#{key},'%')
+            or attr28 LIKE CONCAT('%',#{key},'%')
+            or attr29 LIKE CONCAT('%',#{key},'%')
+            )
+        </if>
+        ORDER BY
+        updateDate DESC
+    </select>
+
+    <select id="queryPage" resultType="java.util.HashMap" parameterType="java.util.Map" >
+        select *
+        from ${tableName}
+        where attr30 = 1
+        <if test="sid != null">
+            and sid = #{sid,jdbcType=CHAR}
+        </if>
+        <if test="code != null" >
+            and code = #{code,jdbcType=VARCHAR}
+        </if>
+        <if test="attr1 != null" >
+            and attr1 = #{attr1,jdbcType=VARCHAR}
+        </if>
+        <if test="attr2 != null" >
+            and attr2 = #{attr2,jdbcType=VARCHAR}
+        </if>
+        <if test="attr3 != null" >
+            and attr3 = #{attr3,jdbcType=VARCHAR}
+        </if>
+        <if test="attr4 != null" >
+            and attr4 = #{attr4,jdbcType=VARCHAR}
+        </if>
+        <if test="attr5 != null" >
+            and attr5 = #{attr5,jdbcType=VARCHAR}
+        </if>
+        <if test="attr6 != null" >
+            and attr6 = #{attr6,jdbcType=VARCHAR}
+        </if>
+        <if test="attr7 != null" >
+            and attr7 = #{attr7,jdbcType=VARCHAR}
+        </if>
+        <if test="attr8 != null" >
+            and attr8 = #{attr8,jdbcType=VARCHAR}
+        </if>
+        <if test="attr9 != null" >
+            and attr9 = #{attr9,jdbcType=VARCHAR}
+        </if>
+        <if test="attr10 != null" >
+            and attr10 = #{attr10,jdbcType=VARCHAR}
+        </if>
+        <if test="attr11 != null" >
+            and attr11 = #{attr11,jdbcType=VARCHAR}
+        </if>
+        <if test="attr12 != null" >
+            and attr12 = #{attr12,jdbcType=VARCHAR}
+        </if>
+        <if test="attr13 != null" >
+            and attr13 = #{attr13,jdbcType=VARCHAR}
+        </if>
+        <if test="attr14 != null" >
+            and attr14 = #{attr14,jdbcType=VARCHAR}
+        </if>
+        <if test="attr15 != null" >
+            and attr15 = #{attr15,jdbcType=VARCHAR}
+        </if>
+        <if test="attr16 != null" >
+            and attr16 = #{attr16,jdbcType=VARCHAR}
+        </if>
+        <if test="attr17 != null" >
+            and attr17 = #{attr17,jdbcType=VARCHAR}
+        </if>
+        <if test="attr18 != null" >
+            and attr18 = #{attr18,jdbcType=VARCHAR}
+        </if>
+        <if test="attr19 != null" >
+            and attr19 = #{attr19,jdbcType=VARCHAR}
+        </if>
+        <if test="attr20 != null" >
+            and attr20 = #{attr20,jdbcType=VARCHAR}
+        </if>
+        <if test="attr21 != null" >
+            and attr21 = #{attr21,jdbcType=VARCHAR}
+        </if>
+        <if test="attr22 != null" >
+            and attr22 = #{attr22,jdbcType=VARCHAR}
+        </if>
+        <if test="attr23 != null" >
+            and attr23 = #{attr23,jdbcType=VARCHAR}
+        </if>
+        <if test="attr24 != null" >
+            and attr24 = #{attr24,jdbcType=VARCHAR}
+        </if>
+        <if test="attr25 != null" >
+            and attr25 = #{attr25,jdbcType=VARCHAR}
+        </if>
+        <if test="attr26 != null" >
+            and attr26 = #{attr26,jdbcType=VARCHAR}
+        </if>
+        <if test="attr27 != null" >
+            and attr27 = #{attr27,jdbcType=VARCHAR}
+        </if>
+        <if test="attr28 != null" >
+            and attr28 = #{attr28,jdbcType=VARCHAR}
+        </if>
+        <if test="attr29 != null" >
+            and attr29 = #{attr29,jdbcType=VARCHAR}
+        </if>
+        <if test="createby != null" >
+            and createBy = #{createby,jdbcType=VARCHAR}
+        </if>
+        <if test="createdate != null" >
+            and createDate = #{createdate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateby != null" >
+            and updateBy = #{updateby,jdbcType=VARCHAR}
+        </if>
+        <if test="updatedate != null" >
+            and updateDate = #{updatedate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="key != null" >
+            and (
+            attr1 LIKE CONCAT('%',#{key},'%')
+            or attr2 LIKE CONCAT('%',#{key},'%')
+            or attr3 LIKE CONCAT('%',#{key},'%')
+            or attr4 LIKE CONCAT('%',#{key},'%')
+            or attr5 LIKE CONCAT('%',#{key},'%')
+            or attr6 LIKE CONCAT('%',#{key},'%')
+            or attr7 LIKE CONCAT('%',#{key},'%')
+            or attr8 LIKE CONCAT('%',#{key},'%')
+            or attr9 LIKE CONCAT('%',#{key},'%')
+            or attr10 LIKE CONCAT('%',#{key},'%')
+            or attr11 LIKE CONCAT('%',#{key},'%')
+            or attr12 LIKE CONCAT('%',#{key},'%')
+            or attr13 LIKE CONCAT('%',#{key},'%')
+            or attr14 LIKE CONCAT('%',#{key},'%')
+            or attr15 LIKE CONCAT('%',#{key},'%')
+            or attr16 LIKE CONCAT('%',#{key},'%')
+            or attr17 LIKE CONCAT('%',#{key},'%')
+            or attr18 LIKE CONCAT('%',#{key},'%')
+            or attr19 LIKE CONCAT('%',#{key},'%')
+            or attr20 LIKE CONCAT('%',#{key},'%')
+            or attr21 LIKE CONCAT('%',#{key},'%')
+            or attr22 LIKE CONCAT('%',#{key},'%')
+            or attr23 LIKE CONCAT('%',#{key},'%')
+            or attr24 LIKE CONCAT('%',#{key},'%')
+            or attr25 LIKE CONCAT('%',#{key},'%')
+            or attr26 LIKE CONCAT('%',#{key},'%')
+            or attr27 LIKE CONCAT('%',#{key},'%')
+            or attr28 LIKE CONCAT('%',#{key},'%')
+            or attr29 LIKE CONCAT('%',#{key},'%')
+            )
+        </if>
+        ORDER BY
+        updateDate DESC
+    </select>
+
     <insert id="insertSelective" parameterType="java.util.Map" >
         insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides="," >

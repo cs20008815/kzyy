@@ -23,8 +23,9 @@ define(['jquery', 'underscore', 'backbone'
                 "List": _.template(List)
             },
             initialize: function (option) {
-                _.bindAll(this, "queryDate", "PageCallback");
+                _.bindAll(this, "query", "queryDate", "PageCallback");
                 this.pageSize = 10;//每页显示条数
+                this.pageNum = 1;
 
                 this.render();
                 return this;
@@ -51,63 +52,67 @@ define(['jquery', 'underscore', 'backbone'
                 //传递分页参数
                 var pageOpt = {
                     pageNum: 1,
-                    pageSize: _this.pageSize,
-                    pageStart:0
+                    pageSize: _this.pageSize
                 };
                 _this.queryDate(pageOpt);
             },
             PageCallback: function(page_id, panel){
                 var _this = this;
+                console.log(page_id);
                 //传递分页参数
                 var pageOpt = {
                     pageNum: page_id,
-                    pageSize: _this.pageSize,
-                    pageStart:((page_id-1)*_this.pageSize)
+                    pageSize: _this.pageSize
                 };
                 _this.queryDate(pageOpt);
             },
             queryDate: function(pageOpt){
                 var _this = this;
-
                 if("" != _this.$("#name").val()){
                     pageOpt.key = _this.$("#name").val();
                 }
-
                 _this.$("#querynoresult").css({"display": "none"});
                 var userModel = new Backbone.Model;
                 userModel.fetchEx(pageOpt,{
                     url : 'api/guest/getGuestList',
                     success: function (data) {
-                        var entity = data.get("output");
-                        if(!entity.pageData.length > 0){
-                            _this.$el.find("#querynoresult").css({"display": "block"});
-                            _this.$("#tbody").html("");
-                            _this.$("#page").css({"display": "none"});
-                            return;
-                        }
-                        if(pageOpt.pageNum == 1){
-                            _this.$("#tbody").html(_this.templates.List(entity.pageData));
-                            var totalNum = entity.pageCount;  //总页数
-                            var pageView = new PageView({
-                                callBack: _this.PageCallback,
-                                model: {
-                                    "totalNum": totalNum,
-                                    "pageSize": _this.pageSize,
-                                    "pageIndex": pageOpt.pageNum
-                                }
-                            });
-                            _this.$("#page").css({"display": "block"});
-                            this.$("#page").html(pageView.el);
-                        }else{
-                            this.$("#tbody").html(_this.templates.List(entity.pageData));
-                        }
+                        if(data.get("status") == "S"){
+                            var entity = data.get("output");
+                            var entityData = entity.data;
+                            var entityPage = entity.page;
 
+                            if(!entityData.length > 0){
+                                _this.$el.find("#querynoresult").css({"display": "block"});
+                                _this.$("#tbody").html("");
+                                _this.$("#page").css({"display": "none"});
+                                return;
+                            }
+
+                            if(pageOpt.pageNum == 1){
+                                _this.$("#tbody").html(_this.templates.List(entityData));
+                                var totalNum = entityPage.total;  //总页数
+                                var pageView = new PageView({
+                                    callBack: _this.PageCallback,
+                                    model: {
+                                        "totalNum": totalNum,
+                                        "pageSize": _this.pageSize,
+                                        "pageIndex": _this.pageNum
+                                    }
+                                });
+                                _this.$("#page").css({"display": "block"});
+                                this.$("#page").html(pageView.el);
+                            }else{
+                                this.$("#tbody").html(_this.templates.List(entityData));
+                            }
+                        }else{
+
+                        }
                     }
                 });
             },
             add: function(){
                 var _this = this;
-                var add = new Add({callback:_this.queryDate});
+                var add = new Add({callback:_this.query});
                 new LayerView({
                     attributes:{
                         type:"view",
