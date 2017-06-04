@@ -1,0 +1,52 @@
+<style>
+    .adduser{
+        cursor:hand;
+        color: #0052A3;
+    }
+</style>
+<div class="fast-now" id="currentLoc"></div>
+<div class="b-center">
+    <div class="qiye">
+        <table class="no-border-table long"style="table-layout: fixed;word-break: break-all;height:66px;">
+            <tr>
+                <td width="25%">
+                    <div class="form-td"  style="width: 30%">
+                        <input type="text" class="seach" style="width: 100%" id="name" placeholder="名称">
+                        <i class="icon icon-seach" id="search"></i>
+                    </div>
+                    <i class="icon icon-add" id="add" style="float: right;display: none;"></i>
+                </td>
+            </tr>
+        </table>
+        <div class="qiye-box">
+            <table class="none-border-table">
+                <colgroup>
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="8%">
+                    <col width="8%">
+                    <col width="8%">
+                    <col width="12%">
+                    <col width="12%">
+                </colgroup >
+                <thead>
+                <tr>
+                    <td>日期</td>
+                    <td>姓名</td>
+                    <td>性别</td>
+                    <td>学校</td>
+                    <td>年级</td>
+                    <td>电话</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+            <div style="text-align: center; color: red;" id="querynoresult">没有查询到相关的数据,是否需要<span id="addUser" class="adduser"> 添加 </span>新数据</div>
+            <div class="page" id = "page">
+            </div>
+        </div>
+    </div>
+</div>

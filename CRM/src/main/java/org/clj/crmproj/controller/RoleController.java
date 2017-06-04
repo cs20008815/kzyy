@@ -71,7 +71,10 @@ public class RoleController {
             menuMap.put("tableName", "sys_menu");
             menuMap.put("sid", role.get("attr2"));
             List<Map> menus = loginService.allByMap(menuMap);
-            responses.add(menus.get(0));
+            if(menus.size() > 0){
+                responses.add(menus.get(0));
+            }
+
         }
         return new Response(responses);
     }

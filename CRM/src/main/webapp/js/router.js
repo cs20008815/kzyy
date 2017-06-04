@@ -10,6 +10,8 @@ define(['jquery', 'underscore', 'backbone'
     , 'view/Setting/role/View'
     , 'view/Setting/menu/View'
     , 'view/Guest/View'
+    , 'view/Student/View'
+    , 'view/Student/Import'
     , 'view/GuestFP/View'
     , 'view/MyGuest/View'
 ], function ($, _, Backbone
@@ -21,6 +23,8 @@ define(['jquery', 'underscore', 'backbone'
     , RoleView
     , MenuView
     , GuestView
+    , StudentView
+    , StudentImportView
     , GuestFPView
     , MyGuestView
 ) {
@@ -35,6 +39,8 @@ define(['jquery', 'underscore', 'backbone'
             "23F79F74-67D9-5C4E-6D29-23316AFA41F5":"zhiweiSetting",
             "caidanSetting":"caidanSetting",
             "851DF1D8-64B7-0BF2-EA40-CA0B6EBEAEDF":"guest",
+            "09809f7d-e3be-4c5b-9a89-a300882d3ea2":"student",
+            "c8d1877f-59c0-4841-8b5f-fd458f945d8b":"studentImport",
             "FF26A779-81B0-55FB-2CC2-B4DC70D0A2E0":"guestFP",
             "wdkh":"myguest"
         },
@@ -72,6 +78,14 @@ define(['jquery', 'underscore', 'backbone'
         },
         myguest:function(){
             var view = new MyGuestView();
+            $("#rightdiv").html(view.$el);
+        },
+        student:function(){
+            var view = new StudentView();
+            $("#rightdiv").html(view.$el);
+        },
+        studentImport: function(){
+            var view = new StudentImportView();
             $("#rightdiv").html(view.$el);
         }
     });
