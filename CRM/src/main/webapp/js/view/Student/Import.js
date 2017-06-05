@@ -57,7 +57,6 @@ define(['jquery', 'underscore', 'backbone'
                             }
                             $("#uploadFile").after($("#uploadFile").clone().val(""));
                             $("#uploadFile").remove();
-                            _this.queryDate();
                         },
                         error: function (data) {
                             $("#uploadFile").after($("#uploadFile").clone().val(""));

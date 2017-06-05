@@ -114,7 +114,6 @@ public class GuestController extends BaseController {
     public Response importFile(@RequestParam(value = "uploadFile") MultipartFile uploadFile){
         System.out.println("-----------------------------------------------");
         Long uploadFileSize = uploadFile.getSize();
-        System.out.println(uploadFileSize);
         if(uploadFileSize > 0){
             Object o = EhcacheUtil.getInstance().get("user");
             if(null == o){
@@ -126,7 +125,7 @@ public class GuestController extends BaseController {
             //这个myfile是MultipartFile的
             DiskFileItem fi = (DiskFileItem) cf.getFileItem();
             File tempFile = fi.getStoreLocation();
-
+            ArrayList errList = new ArrayList();
             try {
                 XSSFWorkbook xssfWorkbook = new XSSFWorkbook(tempFile);
                 XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(0);
@@ -135,23 +134,51 @@ public class GuestController extends BaseController {
                 for(int i=1;i<=rowEnd;i++){
                     XSSFRow row = xssfSheet.getRow(i);
                     if(null == row) {
+                        errList.add((i+1)+":行错误");
                         continue;
                     }
                     Map mapppp = new HashMap();
-                    for(int k=1;k<=15;k++){
-                        XSSFCell cell = row.getCell(k-1);
-                        if(null==cell || "".equals(cell.toString())) {
-                            mapppp.put("attr" + k, "空");
-                        }else{
-                            if(cell.getCellType() == HSSFCell.CELL_TYPE_FORMULA){
-                                mapppp.put("attr" + k, cell.getStringCellValue());
-                            }else{
-                                mapppp.put("attr" + k, cell.toString());
-                            }
-                        }
+                    if(null==row.getCell(0) || "".equals(row.getCell(0).toString())) {
+                        errList.add((i+1)+":时间错误:"+getRowData(row));
+                        continue;
+                    }else{
+                        mapppp.put("attr1", row.getCell(0));
                     }
+                    mapppp.put("attr2", row.getCell(1));
+                    mapppp.put("attr3", row.getCell(2));
+                    mapppp.put("attr4", row.getCell(3));
+                    mapppp.put("attr5", row.getCell(4));
+                    mapppp.put("attr6", row.getCell(5));
+                    mapppp.put("attr7", row.getCell(6));
+                    mapppp.put("attr8", row.getCell(7));
+                    mapppp.put("attr9", row.getCell(8));
+                    mapppp.put("attr10", row.getCell(9));
+                    mapppp.put("attr11", row.getCell(10));
+                    mapppp.put("attr12", row.getCell(11));
+                    mapppp.put("attr13", row.getCell(12));
+                    mapppp.put("attr14", row.getCell(13));
+                    mapppp.put("attr15", row.getCell(14));
+                    mapppp.put("attr16", row.getCell(15));
+                    mapppp.put("attr17", row.getCell(16));
+                    mapppp.put("attr18", row.getCell(17));
+                    mapppp.put("attr19", row.getCell(18));
+                    mapppp.put("attr20", row.getCell(19));
+                    mapppp.put("attr21", row.getCell(20));
+//                    for(int k=0;k < row.getLastCellNum();k++){
+//                        XSSFCell cell = row.getCell(k);
+//                        if(null==cell || "".equals(cell.toString())) {
+//                            mapppp.put("attr" + k, "空");
+//                        }else{
+//                            if(cell.getCellType() == HSSFCell.CELL_TYPE_FORMULA){
+//                                mapppp.put("attr" + k, cell.getStringCellValue());
+//                            }else{
+//                                mapppp.put("attr" + k, cell.toString());
+//                            }
+//                        }
+//                    }
                     System.out.println(mapppp);
                 }
+                //System.out.println(errList.toString());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -159,6 +186,25 @@ public class GuestController extends BaseController {
         }else{
             return new Response();
         }
+    }
+
+    public String getRowData(XSSFRow row){
+        String tempStr = "";
+        for(int k=0;k < row.getLastCellNum();k++){
+            XSSFCell cell = row.getCell(k);
+            if(null==cell || "".equals(cell.toString())) {
+                tempStr += "空,";
+            }else{
+                if(cell.getCellType() == HSSFCell.CELL_TYPE_FORMULA){
+                    tempStr += cell.getStringCellValue()+",";
+                }else{
+                    tempStr += cell.toString()+",";
+                }
+            }
+        }
+        tempStr = tempStr.substring(0,tempStr.length()-1);
+        System.out.println(tempStr);
+        return tempStr;
     }
 }
 
