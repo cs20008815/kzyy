@@ -54,6 +54,8 @@ define(['jquery', 'underscore', 'backbone'
                             if(data && data.status == "S"){
                                 console.log(data.message);
                                 iziNotyf.confirm(data.message);
+                            }else{
+                                iziNotyf.alert(data.message);
                             }
                             $("#uploadFile").after($("#uploadFile").clone().val(""));
                             $("#uploadFile").remove();

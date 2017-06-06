@@ -3,6 +3,8 @@ package org.clj.crmproj.controller;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.exceptions.InvalidOperationException;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -112,7 +115,6 @@ public class GuestController extends BaseController {
     @RequestMapping(value = "/importFile")
     @ResponseBody
     public Response importFile(@RequestParam(value = "uploadFile") MultipartFile uploadFile){
-        System.out.println("-----------------------------------------------");
         Long uploadFileSize = uploadFile.getSize();
         if(uploadFileSize > 0){
             Object o = EhcacheUtil.getInstance().get("user");
@@ -179,6 +181,12 @@ public class GuestController extends BaseController {
                     System.out.println(mapppp);
                 }
                 //System.out.println(errList.toString());
+            } catch (InvalidFormatException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InvalidOperationException e) {
+                return new Response("无法打开文件，请确认是否有密码！");
             } catch (Exception e) {
                 e.printStackTrace();
             }
