@@ -509,6 +509,20 @@
         updateDate DESC
     </select>
 
+    <insert id="insertBatch" parameterType="List">
+        <foreach collection="list" item="item" index="index" separator=",">
+        insert into student (sid, attr1, attr2,
+        attr3, attr4, attr5,
+        attr6, attr7, attr8,
+        attr9, attr10, attr11,
+        attr12, attr13, attr14,
+        attr15, attr16, attr17,
+        attr18, attr19, attr20, attr21, attr28, attr29, attr30, createBy, createDate, updateBy, updateDate)
+        values
+        (null,#{item.name},#{item.sex},#{item.address},#{item.telephone},#{item.tId})
+        </foreach>
+    </insert>
+
     <insert id="insertSelective" parameterType="java.util.Map" >
         insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides="," >
