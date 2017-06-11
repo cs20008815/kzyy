@@ -83,7 +83,7 @@ define(['jquery', 'underscore', 'backbone'
 
                             if(!entityData.length > 0){
                                 _this.$el.find("#querynoresult").css({"display": "block"});
-                                _this.$("#tbody").html("");
+                                _this.$("#tbody").empty();
                                 _this.$("#page").css({"display": "none"});
                                 return;
                             }
@@ -100,9 +100,9 @@ define(['jquery', 'underscore', 'backbone'
                                     }
                                 });
                                 _this.$("#page").css({"display": "block"});
-                                this.$("#page").html(pageView.el);
+                                _this.$("#page").html(pageView.el);
                             }else{
-                                this.$("#tbody").html(_this.templates.List(entityData));
+                                _this.$("#tbody").append(_this.templates.List(entityData));
                             }
                         }else{
 

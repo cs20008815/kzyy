@@ -53,7 +53,19 @@ define(['jquery', 'underscore', 'backbone'
                             console.log(data);
                             if(data && data.status == "S"){
                                 console.log(data.message);
-                                iziNotyf.confirm(data.message);
+                                iziNotyf.confirm("导入成功");
+                                _this.$("#importErr").html("");
+                                for(var i = 0; i < data.output.length; i++){
+                                    _this.$("#importErr").append("<div>");
+                                    _this.$("#importErr").append("<span>错误行："+data.output[i].err+"; </span>");
+                                    _this.$("#importErr").append("<span>日期："+data.output[i].attr1+"; </span>");
+                                    _this.$("#importErr").append("<span>单据："+data.output[i].attr2+"; </span>");
+                                    _this.$("#importErr").append("<span>姓名："+data.output[i].attr3+"; </span>");
+                                    _this.$("#importErr").append("<span>手机号："+data.output[i].attr7+"; </span>");
+                                    _this.$("#importErr").append("</div>");
+
+                                    console.log(data.output[i]);
+                                }
                             }else{
                                 iziNotyf.alert(data.message);
                             }

@@ -50,6 +50,11 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
+    public int addList(List list){
+        return sysLoginMapper.insertBatch(list);
+    }
+
+    @Override
     public int add(Map map){
         return sysLoginMapper.insertSelective(map);
     }

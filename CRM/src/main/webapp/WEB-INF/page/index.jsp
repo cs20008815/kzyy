@@ -113,7 +113,7 @@
         <table style="width:100%;">
 
         </table>
-        <div style="display: block;color: #FFF;font-size: 16px;">© 1998-2016 空中英语 版权所有 &nbsp;</div>
+        <div style="display: block;color: #FFF;font-size: 16px;">© 1998-2016 书人教育 版权所有 &nbsp;</div>
         <div style=" text-align: center;"><a style="color: #FFF;" href="http://www.miitbeian.gov.cn"
                                              target="_blank"></a></div>
     </div>

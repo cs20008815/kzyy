@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" type="text/css" href="css/index.css" media="all">
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" media="screen"/>
-    <title>空中英语管理系统</title>
+    <title>书人教育管理系统</title>
     <script src="js/libs/jquery/jquery.js" type="text/javascript"></script>
 </head>
 <body>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div style="position: fixed;top: 90%;left: 40%;font-size: .9rem;">
-                    <div style="display: block;">© 1998-2016 空中英语 版权所有 &nbsp;</div>
+                    <div style="display: block;">© 1998-2016 书人教育 版权所有 &nbsp;</div>
                     <div><a href="http://www.miitbeian.gov.cn" target="_blank"></a></div>
                 </div>
             </td>

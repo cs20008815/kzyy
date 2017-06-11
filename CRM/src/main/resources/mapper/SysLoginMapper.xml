@@ -510,16 +510,23 @@
     </select>
 
     <insert id="insertBatch" parameterType="List">
-        <foreach collection="list" item="item" index="index" separator=",">
-        insert into student (sid, attr1, attr2,
-        attr3, attr4, attr5,
-        attr6, attr7, attr8,
-        attr9, attr10, attr11,
-        attr12, attr13, attr14,
-        attr15, attr16, attr17,
-        attr18, attr19, attr20, attr21, attr28, attr29, attr30, createBy, createDate, updateBy, updateDate)
+        insert into sys_guest (
+        sid, attr1, attr2,attr3, attr4, attr5,
+        attr6, attr7, attr8,attr9, attr10, attr11,
+        attr12, attr13, attr14,attr15, attr16, attr17,
+        attr18, attr19, attr20, attr21, attr22, attr23,
+        attr24, attr25, attr26, attr27, attr28, attr29,
+        attr30, createBy, createDate, updateBy, updateDate)
         values
-        (null,#{item.name},#{item.sex},#{item.address},#{item.telephone},#{item.tId})
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.sid},#{item.attr1},#{item.attr2},#{item.attr3},#{item.attr4},#{item.attr5},
+            #{item.attr6},#{item.attr7},#{item.attr8},#{item.attr9},#{item.attr10},#{item.attr11},
+            #{item.attr12},#{item.attr13},#{item.attr14},#{item.attr15},#{item.attr16},#{item.attr17},
+            #{item.attr18},#{item.attr19},#{item.attr20},#{item.attr21},#{item.attr22},#{item.attr23},
+            #{item.attr24},#{item.attr25},#{item.attr26},#{item.attr27},#{item.attr28},#{item.attr29},
+            #{item.attr30},#{item.createby},#{item.createdate},#{item.updateby},#{item.updatedate}
+            )
         </foreach>
     </insert>
 

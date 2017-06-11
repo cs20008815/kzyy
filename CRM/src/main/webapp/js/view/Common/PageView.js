@@ -30,8 +30,8 @@ define([ 'jquery', 'underscore', 'backbone'
 			var pageIndex = this.model.pageIndex;
 			var prev_text = null;
 			var next_text = '<span>下一页</span>';
-			var first_page = '<span>首页</span>';
-			var last_page = '<span>末页</span>';
+			var first_page = '<span style="display: none">首页</span>';
+			var last_page = '<span style="display: none">末页</span>';
 			var num_display_entries = 5;
 			if(this.pageType=="small"){
 
@@ -41,9 +41,9 @@ define([ 'jquery', 'underscore', 'backbone'
 				num_display_entries = 3;
 			}
 
-			
+
 			this.$el.pagination(totalNum, {
-				callback: _this.callBack,  
+				callback: _this.callBack,
 				prev_text:prev_text,
 				next_text:next_text,
 				first_page:first_page,

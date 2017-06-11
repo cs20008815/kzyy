@@ -3,9 +3,11 @@ package org.clj.crmproj.controller;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.exceptions.InvalidOperationException;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -35,6 +37,8 @@ import java.util.*;
 @Controller
 @RequestMapping("api/guest")
 public class GuestController extends BaseController {
+
+    private Map nums = new HashMap();
 
     @Resource
     private LoginService loginService;
@@ -132,65 +136,82 @@ public class GuestController extends BaseController {
             //这个myfile是MultipartFile的
             DiskFileItem fi = (DiskFileItem) cf.getFileItem();
             File tempFile = fi.getStoreLocation();
+            ArrayList importList = new ArrayList();
             ArrayList errList = new ArrayList();
             try {
                 XSSFWorkbook xssfWorkbook = new XSSFWorkbook(tempFile);
                 XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(0);
+
+                XSSFRow title = xssfSheet.getRow(0);
+
+                nums = new HashMap();
+
+                for(int i = 0; i < title.getLastCellNum(); i++){
+                    System.out.println(title.getCell(i).toString());
+                    if(null != title.getCell(i) && !"".equals(title.getCell(i).toString())){
+                        String cellName = title.getCell(i).toString();
+                        if(cellName.equals("日期")){
+                            nums.put("日期", i);
+                        }else if(cellName.equals("收据")){
+                            nums.put("收据", i);
+                        }else if(cellName.equals("姓名") || cellName.equals("学员姓名")){
+                            nums.put("姓名", i);
+                        }else if(cellName.equals("性别")){
+                            nums.put("性别", i);
+                        }else if(cellName.equals("学校")){
+                            nums.put("学校", i);
+                        }else if(cellName.equals("年级")){
+                            nums.put("年级", i);
+                        }else if(cellName.equals("电话")){
+                            nums.put("电话", i);
+                        }else if(cellName.equals("备注")){
+                            nums.put("备注", i);
+                        }else if(cellName.equals("语")){
+                            nums.put("语", i);
+                        }else if(cellName.equals("数")){
+                            nums.put("数", i);
+                        }else if(cellName.equals("理")){
+                            nums.put("理", i);
+                        }else if(cellName.equals("化")){
+                            nums.put("化", i);
+                        }else if(cellName.equals("英")){
+                            nums.put("英", i);
+                        }else if(cellName.equals("其它")){
+                            nums.put("其它", i);
+                        }else if(cellName.equals("培训费") || cellName.equals("单价")){
+                            nums.put("培训费", i);
+                        }else if(cellName.equals("教材费") || cellName.equals("服务费")){
+                            nums.put("教材费", i);
+                        }else if(cellName.equals("合计")){
+                            nums.put("合计", i);
+                        }else if(cellName.equals("签单类型")){
+                            nums.put("签单类型", i);
+                        }else if(cellName.equals("辅导方式")){
+                            nums.put("辅导方式", i);
+                        }else if(cellName.equals("咨询师")){
+                            nums.put("咨询师", i);
+                        }else if(cellName.equals("班主任")){
+                            nums.put("班主任", i);
+                        }else if(cellName.equals("辅导学科")){
+                            nums.put("辅导学科", i);
+                        }else if(cellName.equals("总课时")){
+                            nums.put("总课时", i);
+                        }else if(cellName.equals("收款收据")){
+                            nums.put("收款收据", i);
+                        }
+
+                    }
+                }
+
                 int rowstart = xssfSheet.getFirstRowNum();
                 int rowEnd = xssfSheet.getLastRowNum();
                 for(int i=rowstart+1;i<=rowEnd;i++){
                     XSSFRow row = xssfSheet.getRow(i);
                     if(null == row) {
-                        errList.add((i+1)+":行错误");
+                        errList.add((i + 1) + ":行错误");
                         continue;
                     }
                     Map mapppp = new HashMap();
-                    if(null==row.getCell(0) || "".equals(row.getCell(0).toString())) {
-                        errList.add((i+1)+":时间错误:"+getRowData(row));
-                        continue;
-                    }else{
-                        mapppp.put("attr1", row.getCell(0).toString());
-                    }
-                    mapppp.put("attr2", row.getCell(1).toString());
-                    mapppp.put("attr3", row.getCell(2).toString());
-                    mapppp.put("attr4", row.getCell(3).toString());
-                    mapppp.put("attr5", row.getCell(4).toString());
-                    mapppp.put("attr6", row.getCell(5).toString());
-                    mapppp.put("attr7", row.getCell(6).toString());
-                    mapppp.put("attr8", row.getCell(7).toString());
-                    mapppp.put("attr9", row.getCell(8).toString());
-                    mapppp.put("attr10", row.getCell(9).toString());
-                    XSSFCell cell = row.getCell(10);
-                    DecimalFormat df = new DecimalFormat("#");
-                    String mobile;
-                    switch (cell.getCellType())
-                    {
-                        case HSSFCell.CELL_TYPE_NUMERIC:// 数字
-                            mobile = df.format(cell.getNumericCellValue());
-                            break;
-                        case HSSFCell.CELL_TYPE_STRING:// 字符串
-                            mobile = df.format(Double.parseDouble(cell.toString()));
-                            break;
-                        default:
-                            mobile = cell.toString();
-                            break;
-                    }
-
-                    mapppp.put("attr11", mobile);
-                    mapppp.put("attr12", row.getCell(11).toString());
-                    mapppp.put("attr13", row.getCell(12).toString());
-                    mapppp.put("attr14", row.getCell(13).toString());
-                    mapppp.put("attr15", row.getCell(14).toString());
-                    mapppp.put("attr16", row.getCell(15).toString());
-                    mapppp.put("attr17", row.getCell(16).toString());
-                    mapppp.put("attr18", row.getCell(17).toString());
-                    mapppp.put("attr19", row.getCell(18).toString());
-                    mapppp.put("attr20", row.getCell(19).toString());
-                    mapppp.put("attr21", row.getCell(20).toString());
-                    mapppp.put("attr28", user.get("sid").toString());
-                    mapppp.put("attr29", user.get("attr3").toString());
-
-                    mapppp.put("attr30", "1");
                     mapppp.put("sid", UUID.randomUUID().toString());
                     mapppp.put("tableName","sys_guest");
 
@@ -198,21 +219,60 @@ public class GuestController extends BaseController {
                     mapppp.put("createdate", new Date());
                     mapppp.put("updateby", user.get("sid").toString());
                     mapppp.put("updatedate", new Date());
-//                    for(int k=0;k < row.getLastCellNum();k++){
-//                        XSSFCell cell = row.getCell(k);
-//                        if(null==cell || "".equals(cell.toString())) {
-//                            mapppp.put("attr" + k, "空");
-//                        }else{
-//                            if(cell.getCellType() == HSSFCell.CELL_TYPE_FORMULA){
-//                                mapppp.put("attr" + k, cell.getStringCellValue());
-//                            }else{
-//                                mapppp.put("attr" + k, cell.toString());
-//                            }
-//                        }
-//                    }
-                    loginService.add(mapppp);
+
+                    mapppp.put("attr2", getCellData(row, "收据"));
+                    mapppp.put("attr3", getCellData(row, "姓名"));
+                    mapppp.put("attr4", getCellData(row, "性别"));
+                    mapppp.put("attr5", getCellData(row, "学校"));
+                    mapppp.put("attr6", getCellData(row, "年级"));
+                    mapppp.put("attr7", getCellData(row, "电话"));
+                    mapppp.put("attr8", getCellData(row, "备注"));
+                    mapppp.put("attr9", getCellData(row, "语"));
+                    mapppp.put("attr10", getCellData(row, "数"));
+                    mapppp.put("attr11", getCellData(row, "理"));
+                    mapppp.put("attr12", getCellData(row, "化"));
+                    mapppp.put("attr13", getCellData(row, "英"));
+                    mapppp.put("attr14", getCellData(row, "其它"));
+                    mapppp.put("attr15", getCellData(row, "培训费"));
+                    mapppp.put("attr16", getCellData(row, "教材费"));
+                    mapppp.put("attr17", getCellData(row, "合计"));
+                    mapppp.put("attr18", getCellData(row, "签单类型"));
+                    mapppp.put("attr19", getCellData(row, "辅导方式"));
+                    mapppp.put("attr20", getCellData(row, "咨询师"));
+                    mapppp.put("attr21", getCellData(row, "班主任"));
+                    mapppp.put("attr22", getCellData(row, "辅导学科"));
+                    mapppp.put("attr23", getCellData(row, "总课时"));
+                    mapppp.put("attr24", getCellData(row, "收款收据"));
+                    mapppp.put("attr25", "");
+                    mapppp.put("attr26", "");
+                    mapppp.put("attr27", "");
+                    mapppp.put("attr28", user.get("sid").toString());
+                    mapppp.put("attr29", user.get("attr3").toString());
+                    mapppp.put("attr30", "1");
+
+                    if(null==row.getCell(Integer.parseInt(nums.get("日期").toString()))
+                            || "".equals(row.getCell(Integer.parseInt(nums.get("日期").toString())))) {
+                        mapppp.put("attr1", getCellData(row, "日期"));
+                        mapppp.put("err", (i+1)+":时间错误");
+                        errList.add(mapppp);
+                        continue;
+                    }else{
+
+                        mapppp.put("attr1", getCellData(row, "日期"));
+                        Map queryMap = new HashMap();
+                        queryMap.put("tableName","sys_guest");
+                        queryMap.put("attr7", getCellData(row, "电话"));
+                        List l = loginService.allByMap(queryMap);
+                        if(l.size() > 0){
+                            mapppp.put("err",(i+1)+":号码存在");
+                            errList.add(mapppp);
+                        }else{
+                            importList.add(mapppp);
+                        }
+                    }
                 }
-                for(int i = 0; i< errList.size(); i++){
+                if(importList.size() > 0){
+                    loginService.addList(importList);
                 }
 
             } catch (InvalidFormatException e) {
@@ -228,6 +288,79 @@ public class GuestController extends BaseController {
         }else{
             return new Response();
         }
+    }
+
+    public String getCellData(XSSFRow row, String str){
+        String tempStr = "空";
+
+        if(null == nums.get(str)){
+            return tempStr;
+        }
+        XSSFCell cell = row.getCell(Integer.parseInt(nums.get(str).toString()));
+
+        if(null== cell || "".equals(cell.toString())) {
+            return tempStr;
+        }
+
+        DecimalFormat df = new DecimalFormat("#");
+        switch (cell.getCellType())
+        {
+            case HSSFCell.CELL_TYPE_NUMERIC:// 数字
+                tempStr = parseExcel(cell);
+                break;
+            case HSSFCell.CELL_TYPE_STRING:// 字符串
+                tempStr = cell.toString();
+                break;
+            default:
+                tempStr = cell.toString();
+                break;
+        }
+        return tempStr;
+    }
+
+    private String parseExcel(XSSFCell cell) {
+        String result = new String();
+        switch (cell.getCellType()) {
+            case HSSFCell.CELL_TYPE_NUMERIC:// 数字类型
+                if (HSSFDateUtil.isCellDateFormatted(cell)) {// 处理日期格式、时间格式
+                    SimpleDateFormat sdf = null;
+                    if (cell.getCellStyle().getDataFormat() == HSSFDataFormat
+                            .getBuiltinFormat("h:mm")) {
+                        sdf = new SimpleDateFormat("HH:mm");
+                    } else {// 日期
+                        sdf = new SimpleDateFormat("yyyy年MM月dd");
+                    }
+                    Date date = cell.getDateCellValue();
+                    result = sdf.format(date);
+                } else if (cell.getCellStyle().getDataFormat() == 58) {
+                    // 处理自定义日期格式：m月d日(通过判断单元格的格式id解决，id的值是58)
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd");
+                    double value = cell.getNumericCellValue();
+                    Date date = org.apache.poi.ss.usermodel.DateUtil
+                            .getJavaDate(value);
+                    result = sdf.format(date);
+                } else {
+                    double value = cell.getNumericCellValue();
+                    CellStyle style = cell.getCellStyle();
+                    DecimalFormat format = new DecimalFormat();
+                    String temp = style.getDataFormatString();
+                    // 单元格设置成常规
+                    if (temp.equals("General")) {
+                        format.applyPattern("#");
+                    }
+                    result = format.format(value);
+                }
+                break;
+            case HSSFCell.CELL_TYPE_STRING:// String类型
+                result = cell.getRichStringCellValue().toString();
+                break;
+            case HSSFCell.CELL_TYPE_BLANK:
+                result = "";
+            default:
+                result = "";
+                break;
+        }
+        return result;
     }
 
     public String getRowData(XSSFRow row){

@@ -14,6 +14,7 @@ public interface LoginService {
     List<Map> allByGuestFP(Map map);
     List<Map> queryPage(Map map);
     int countByMap(Map map);
+    int addList(List list);
     int add(Map map);
     int edit(Map map);
 }

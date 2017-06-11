@@ -18,6 +18,8 @@ public interface SysLoginMapper {
 
     int countByMap(Map map);
 
+    int insertBatch(List list);
+
     int insertSelective(Map map);
 
     int updateByPrimaryKeySelective(Map map);
