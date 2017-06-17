@@ -1,5 +1,6 @@
-<%_.each(obj,function(data,value){%>
+<%_.each(obj.data,function(data,value){%>
 <tr>
+    <td><%=(obj.page.pageNum-1)* (obj.page.pageSize)+value+1%></td>
     <td><%=data.attr1%></td>
     <td><%=data.attr2%></td>
     <td><%=data.attr3%></td>

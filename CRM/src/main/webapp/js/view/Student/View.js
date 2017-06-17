@@ -80,7 +80,7 @@ define(['jquery', 'underscore', 'backbone'
                             var entity = data.get("output");
                             var entityData = entity.data;
                             var entityPage = entity.page;
-
+                            console.log(entityData);
                             if(!entityData.length > 0){
                                 _this.$el.find("#querynoresult").css({"display": "block"});
                                 _this.$("#tbody").empty();
@@ -89,7 +89,7 @@ define(['jquery', 'underscore', 'backbone'
                             }
 
                             if(pageOpt.pageNum == 1){
-                                _this.$("#tbody").html(_this.templates.List(entityData));
+                                _this.$("#tbody").html(_this.templates.List(entity));
                                 var totalNum = entityPage.total;  //总页数
                                 var pageView = new PageView({
                                     callBack: _this.PageCallback,
@@ -102,7 +102,7 @@ define(['jquery', 'underscore', 'backbone'
                                 _this.$("#page").css({"display": "block"});
                                 _this.$("#page").html(pageView.el);
                             }else{
-                                _this.$("#tbody").append(_this.templates.List(entityData));
+                                _this.$("#tbody").append(_this.templates.List(entity));
                             }
                         }else{
 

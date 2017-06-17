@@ -341,14 +341,8 @@ public class GuestController extends BaseController {
                     result = sdf.format(date);
                 } else {
                     double value = cell.getNumericCellValue();
-                    CellStyle style = cell.getCellStyle();
-                    DecimalFormat format = new DecimalFormat();
-                    String temp = style.getDataFormatString();
-                    // 单元格设置成常规
-                    if (temp.equals("General")) {
-                        format.applyPattern("#");
-                    }
-                    result = format.format(value);
+                    DecimalFormat df = new DecimalFormat("#");
+                    result = df.format(value);
                 }
                 break;
             case HSSFCell.CELL_TYPE_STRING:// String类型
@@ -360,6 +354,7 @@ public class GuestController extends BaseController {
                 result = "";
                 break;
         }
+        System.out.println(result);
         return result;
     }
 

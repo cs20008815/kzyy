@@ -411,12 +411,11 @@ input { outline: medium none; }
 .form-td .nav-ul-fl.one-li li{text-align:center;    line-height: 20px;    margin: 5px 0;}
 .form-td .nav-ul-fl.one-li li:hover{color:#3c9bdc;}
 .qiye .qiye-box{border-top:1px solid #E6E6E6;}
-.none-border-table{width:95%;color:#303942;background-color:#EFF3F9;font-size: 13px;margin:12px auto;text-align:center;border:none; table-layout: fixed;word-break: break-all;clear:both;   border-collapse: collapse;}
+.none-border-table{width:95%;color: #000000;background-color: #eeeeee;font-size: 13px;margin:12px auto;text-align:center;border:none; table-layout: fixed;word-break: break-all;clear:both;   border-collapse: collapse;}
 .none-border-table thead{background-color:#7C8EA6;color:#fff;}
 .none-border-table thead td{font-size: 13.5px;}
-.none-border-table tbody tr:hover{background-color:#CFE4F5;}
-.none-border-table td{height: 30px; padding: 5px 10px;}
-
+.none-border-table tbody tr:nth-child(odd){background: #dddddd;}
+.none-border-table tbody tr:hover{background-color: #3f3f3f;color: #ffffff}
 
 .border-table {width:100%;color:#303942;font-size:15px;text-align:center;border:none; table-layout: fixed;word-break: break-all;clear:both;   border-collapse: collapse;}
 .border-table  td{height:45px;}
