@@ -140,141 +140,145 @@ public class GuestController extends BaseController {
             ArrayList errList = new ArrayList();
             try {
                 XSSFWorkbook xssfWorkbook = new XSSFWorkbook(tempFile);
-                XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(0);
+                System.out.println(xssfWorkbook.getNumberOfSheets());
+                for(int xssfi = 0; xssfi < xssfWorkbook.getNumberOfSheets(); xssfi++){
+                    XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(xssfi);
+                    System.out.println(xssfSheet.getSheetName());
+                    if("大班".equals(xssfSheet.getSheetName()) || "一对一".equals(xssfSheet.getSheetName())){
+                        XSSFRow title = xssfSheet.getRow(0);
 
-                XSSFRow title = xssfSheet.getRow(0);
+                        nums = new HashMap();
 
-                nums = new HashMap();
+                        for(int i = 0; i < title.getLastCellNum(); i++){
+                            System.out.println(title.getCell(i).toString());
+                            if(null != title.getCell(i) && !"".equals(title.getCell(i).toString())){
+                                String cellName = title.getCell(i).toString();
+                                if(cellName.equals("日期")){
+                                    nums.put("日期", i);
+                                }else if(cellName.equals("收据")){
+                                    nums.put("收据", i);
+                                }else if(cellName.equals("姓名") || cellName.equals("学员姓名")){
+                                    nums.put("姓名", i);
+                                }else if(cellName.equals("性别")){
+                                    nums.put("性别", i);
+                                }else if(cellName.equals("学校")){
+                                    nums.put("学校", i);
+                                }else if(cellName.equals("年级")){
+                                    nums.put("年级", i);
+                                }else if(cellName.equals("电话")){
+                                    nums.put("电话", i);
+                                }else if(cellName.equals("备注")){
+                                    nums.put("备注", i);
+                                }else if(cellName.equals("语")){
+                                    nums.put("语", i);
+                                }else if(cellName.equals("数")){
+                                    nums.put("数", i);
+                                }else if(cellName.equals("理")){
+                                    nums.put("理", i);
+                                }else if(cellName.equals("化")){
+                                    nums.put("化", i);
+                                }else if(cellName.equals("英")){
+                                    nums.put("英", i);
+                                }else if(cellName.equals("其它")){
+                                    nums.put("其它", i);
+                                }else if(cellName.equals("培训费") || cellName.equals("单价")){
+                                    nums.put("培训费", i);
+                                }else if(cellName.equals("教材费") || cellName.equals("服务费")){
+                                    nums.put("教材费", i);
+                                }else if(cellName.equals("合计")){
+                                    nums.put("合计", i);
+                                }else if(cellName.equals("签单类型")){
+                                    nums.put("签单类型", i);
+                                }else if(cellName.equals("辅导方式")){
+                                    nums.put("辅导方式", i);
+                                }else if(cellName.equals("咨询师")){
+                                    nums.put("咨询师", i);
+                                }else if(cellName.equals("班主任")){
+                                    nums.put("班主任", i);
+                                }else if(cellName.equals("辅导学科")){
+                                    nums.put("辅导学科", i);
+                                }else if(cellName.equals("总课时")){
+                                    nums.put("总课时", i);
+                                }else if(cellName.equals("收款收据")){
+                                    nums.put("收款收据", i);
+                                }
 
-                for(int i = 0; i < title.getLastCellNum(); i++){
-                    System.out.println(title.getCell(i).toString());
-                    if(null != title.getCell(i) && !"".equals(title.getCell(i).toString())){
-                        String cellName = title.getCell(i).toString();
-                        if(cellName.equals("日期")){
-                            nums.put("日期", i);
-                        }else if(cellName.equals("收据")){
-                            nums.put("收据", i);
-                        }else if(cellName.equals("姓名") || cellName.equals("学员姓名")){
-                            nums.put("姓名", i);
-                        }else if(cellName.equals("性别")){
-                            nums.put("性别", i);
-                        }else if(cellName.equals("学校")){
-                            nums.put("学校", i);
-                        }else if(cellName.equals("年级")){
-                            nums.put("年级", i);
-                        }else if(cellName.equals("电话")){
-                            nums.put("电话", i);
-                        }else if(cellName.equals("备注")){
-                            nums.put("备注", i);
-                        }else if(cellName.equals("语")){
-                            nums.put("语", i);
-                        }else if(cellName.equals("数")){
-                            nums.put("数", i);
-                        }else if(cellName.equals("理")){
-                            nums.put("理", i);
-                        }else if(cellName.equals("化")){
-                            nums.put("化", i);
-                        }else if(cellName.equals("英")){
-                            nums.put("英", i);
-                        }else if(cellName.equals("其它")){
-                            nums.put("其它", i);
-                        }else if(cellName.equals("培训费") || cellName.equals("单价")){
-                            nums.put("培训费", i);
-                        }else if(cellName.equals("教材费") || cellName.equals("服务费")){
-                            nums.put("教材费", i);
-                        }else if(cellName.equals("合计")){
-                            nums.put("合计", i);
-                        }else if(cellName.equals("签单类型")){
-                            nums.put("签单类型", i);
-                        }else if(cellName.equals("辅导方式")){
-                            nums.put("辅导方式", i);
-                        }else if(cellName.equals("咨询师")){
-                            nums.put("咨询师", i);
-                        }else if(cellName.equals("班主任")){
-                            nums.put("班主任", i);
-                        }else if(cellName.equals("辅导学科")){
-                            nums.put("辅导学科", i);
-                        }else if(cellName.equals("总课时")){
-                            nums.put("总课时", i);
-                        }else if(cellName.equals("收款收据")){
-                            nums.put("收款收据", i);
+                            }
                         }
 
-                    }
-                }
+                        int rowstart = xssfSheet.getFirstRowNum();
+                        int rowEnd = xssfSheet.getLastRowNum();
+                        for(int i=rowstart+1;i<=rowEnd;i++){
+                            XSSFRow row = xssfSheet.getRow(i);
+                            if(null == row) {
+                                errList.add((i + 1) + ":行错误");
+                                continue;
+                            }
+                            Map mapppp = new HashMap();
+                            mapppp.put("sid", UUID.randomUUID().toString());
+                            mapppp.put("tableName","sys_guest");
 
-                int rowstart = xssfSheet.getFirstRowNum();
-                int rowEnd = xssfSheet.getLastRowNum();
-                for(int i=rowstart+1;i<=rowEnd;i++){
-                    XSSFRow row = xssfSheet.getRow(i);
-                    if(null == row) {
-                        errList.add((i + 1) + ":行错误");
-                        continue;
-                    }
-                    Map mapppp = new HashMap();
-                    mapppp.put("sid", UUID.randomUUID().toString());
-                    mapppp.put("tableName","sys_guest");
+                            mapppp.put("createby", user.get("sid").toString());
+                            mapppp.put("createdate", new Date());
+                            mapppp.put("updateby", user.get("sid").toString());
+                            mapppp.put("updatedate", new Date());
 
-                    mapppp.put("createby", user.get("sid").toString());
-                    mapppp.put("createdate", new Date());
-                    mapppp.put("updateby", user.get("sid").toString());
-                    mapppp.put("updatedate", new Date());
+                            mapppp.put("attr2", getCellData(row, "收据"));
+                            mapppp.put("attr3", getCellData(row, "姓名"));
+                            mapppp.put("attr4", getCellData(row, "性别"));
+                            mapppp.put("attr5", getCellData(row, "学校"));
+                            mapppp.put("attr6", getCellData(row, "年级"));
+                            mapppp.put("attr7", getCellData(row, "电话"));
+                            mapppp.put("attr8", getCellData(row, "备注"));
+                            mapppp.put("attr9", getCellData(row, "语"));
+                            mapppp.put("attr10", getCellData(row, "数"));
+                            mapppp.put("attr11", getCellData(row, "理"));
+                            mapppp.put("attr12", getCellData(row, "化"));
+                            mapppp.put("attr13", getCellData(row, "英"));
+                            mapppp.put("attr14", getCellData(row, "其它"));
+                            mapppp.put("attr15", getCellData(row, "培训费"));
+                            mapppp.put("attr16", getCellData(row, "教材费"));
+                            mapppp.put("attr17", getCellData(row, "合计"));
+                            mapppp.put("attr18", getCellData(row, "签单类型"));
+                            mapppp.put("attr19", getCellData(row, "辅导方式"));
+                            mapppp.put("attr20", getCellData(row, "咨询师"));
+                            mapppp.put("attr21", getCellData(row, "班主任"));
+                            mapppp.put("attr22", getCellData(row, "辅导学科"));
+                            mapppp.put("attr23", getCellData(row, "总课时"));
+                            mapppp.put("attr24", getCellData(row, "收款收据"));
+                            mapppp.put("attr25", "");
+                            mapppp.put("attr26", "");
+                            mapppp.put("attr27", "");
+                            mapppp.put("attr28", user.get("sid").toString());
+                            mapppp.put("attr29", user.get("attr3").toString());
+                            mapppp.put("attr30", "1");
 
-                    mapppp.put("attr2", getCellData(row, "收据"));
-                    mapppp.put("attr3", getCellData(row, "姓名"));
-                    mapppp.put("attr4", getCellData(row, "性别"));
-                    mapppp.put("attr5", getCellData(row, "学校"));
-                    mapppp.put("attr6", getCellData(row, "年级"));
-                    mapppp.put("attr7", getCellData(row, "电话"));
-                    mapppp.put("attr8", getCellData(row, "备注"));
-                    mapppp.put("attr9", getCellData(row, "语"));
-                    mapppp.put("attr10", getCellData(row, "数"));
-                    mapppp.put("attr11", getCellData(row, "理"));
-                    mapppp.put("attr12", getCellData(row, "化"));
-                    mapppp.put("attr13", getCellData(row, "英"));
-                    mapppp.put("attr14", getCellData(row, "其它"));
-                    mapppp.put("attr15", getCellData(row, "培训费"));
-                    mapppp.put("attr16", getCellData(row, "教材费"));
-                    mapppp.put("attr17", getCellData(row, "合计"));
-                    mapppp.put("attr18", getCellData(row, "签单类型"));
-                    mapppp.put("attr19", getCellData(row, "辅导方式"));
-                    mapppp.put("attr20", getCellData(row, "咨询师"));
-                    mapppp.put("attr21", getCellData(row, "班主任"));
-                    mapppp.put("attr22", getCellData(row, "辅导学科"));
-                    mapppp.put("attr23", getCellData(row, "总课时"));
-                    mapppp.put("attr24", getCellData(row, "收款收据"));
-                    mapppp.put("attr25", "");
-                    mapppp.put("attr26", "");
-                    mapppp.put("attr27", "");
-                    mapppp.put("attr28", user.get("sid").toString());
-                    mapppp.put("attr29", user.get("attr3").toString());
-                    mapppp.put("attr30", "1");
+                            if(null==row.getCell(Integer.parseInt(nums.get("日期").toString()))
+                                    || "".equals(row.getCell(Integer.parseInt(nums.get("日期").toString())))) {
+                                mapppp.put("attr1", getCellData(row, "日期"));
+                                mapppp.put("err", (i+1)+":时间错误");
+                                errList.add(mapppp);
+                                continue;
+                            }else{
 
-                    if(null==row.getCell(Integer.parseInt(nums.get("日期").toString()))
-                            || "".equals(row.getCell(Integer.parseInt(nums.get("日期").toString())))) {
-                        mapppp.put("attr1", getCellData(row, "日期"));
-                        mapppp.put("err", (i+1)+":时间错误");
-                        errList.add(mapppp);
-                        continue;
-                    }else{
-
-                        mapppp.put("attr1", getCellData(row, "日期"));
-                        Map queryMap = new HashMap();
-                        queryMap.put("tableName","sys_guest");
-                        queryMap.put("attr7", getCellData(row, "电话"));
-                        List l = loginService.allByMap(queryMap);
-                        if(l.size() > 0){
-                            mapppp.put("err",(i+1)+":号码存在");
-                            errList.add(mapppp);
-                        }else{
-                            importList.add(mapppp);
+                                mapppp.put("attr1", getCellData(row, "日期"));
+                                Map queryMap = new HashMap();
+                                queryMap.put("tableName","sys_guest");
+                                queryMap.put("attr7", getCellData(row, "电话"));
+                                List l = loginService.allByMap(queryMap);
+                                if(l.size() > 0){
+                                    mapppp.put("err",(i+1)+":号码存在");
+                                    errList.add(mapppp);
+                                }else{
+                                    importList.add(mapppp);
+                                }
+                            }
+                        }
+                        if(importList.size() > 0){
+                            loginService.addList(importList);
                         }
                     }
                 }
-                if(importList.size() > 0){
-                    loginService.addList(importList);
-                }
-
             } catch (InvalidFormatException e) {
                 e.printStackTrace();
             } catch (IOException e) {
