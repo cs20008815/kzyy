@@ -37,15 +37,17 @@ define(['jquery', 'underscore', 'backbone'
                 this.query();
             },
             events: {
-                "click #addUser":"add",
+                "click #add":"add",
                 "click #look":"look",
                 "click #change":"change",
                 "click #delete":"delete",
                 "click #search":"query",
-                "input #name":"query"
+                "click .gaojisousuo":"search",
+                //"input #name":"query",
+                "input input":"query"
             },
             search: function(){
-
+                $(".gaoji").toggle(300);
             },
             query: function(){
                 var _this = this;
@@ -71,6 +73,23 @@ define(['jquery', 'underscore', 'backbone'
                 if("" != _this.$("#name").val()){
                     pageOpt.key = _this.$("#name").val();
                 }
+
+                if("" != _this.$("#attr3").val()){
+                    pageOpt.attr3 = _this.$("#attr3").val();
+                }
+
+                if("" != _this.$("#attr5").val()){
+                    pageOpt.attr5 = _this.$("#attr5").val();
+                }
+
+                if("" != _this.$("#attr6").val()){
+                    pageOpt.attr6 = _this.$("#attr6").val();
+                }
+
+                if("" != _this.$("#attr27").val()){
+                    pageOpt.attr27 = _this.$("#attr27").val();
+                }
+
                 _this.$("#querynoresult").css({"display": "none"});
                 var userModel = new Backbone.Model;
                 userModel.fetchEx(pageOpt,{
@@ -103,6 +122,7 @@ define(['jquery', 'underscore', 'backbone'
                                 _this.$("#page").html(pageView.el);
                             }else{
                                 _this.$("#tbody").append(_this.templates.List(entity));
+                                _this.$(".qiye-boxx").scrollTop(_this.$("#tbody").height());
                             }
                         }else{
 
@@ -111,6 +131,8 @@ define(['jquery', 'underscore', 'backbone'
                 });
             },
             add: function(){
+                //window.open("http://localhost:8080/crm/page.html");
+                //window.location.href = "/page";
                 var _this = this;
                 var add = new Add({callback:_this.query});
                 new LayerView({

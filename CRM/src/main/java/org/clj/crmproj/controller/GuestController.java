@@ -99,7 +99,6 @@ public class GuestController extends BaseController {
         String phone = requestMap.get("attr2").toString();
         if(StringUtility.isMobileNO(phone)){
             phone = phone.replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2");
-            System.out.println(phone);
             requestMap.put("tableName","sys_guest");
             requestMap.put("sid", UUID.randomUUID().toString());
             requestMap.put("attr3", phone);
@@ -136,21 +135,19 @@ public class GuestController extends BaseController {
             //这个myfile是MultipartFile的
             DiskFileItem fi = (DiskFileItem) cf.getFileItem();
             File tempFile = fi.getStoreLocation();
-            ArrayList importList = new ArrayList();
             ArrayList errList = new ArrayList();
             try {
                 XSSFWorkbook xssfWorkbook = new XSSFWorkbook(tempFile);
-                System.out.println(xssfWorkbook.getNumberOfSheets());
                 for(int xssfi = 0; xssfi < xssfWorkbook.getNumberOfSheets(); xssfi++){
+                    ArrayList importList = new ArrayList();
                     XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(xssfi);
-                    System.out.println(xssfSheet.getSheetName());
                     if("大班".equals(xssfSheet.getSheetName()) || "一对一".equals(xssfSheet.getSheetName())){
                         XSSFRow title = xssfSheet.getRow(0);
-
+                        String sheetName = xssfSheet.getSheetName();
+                        System.out.println(sheetName);
                         nums = new HashMap();
 
                         for(int i = 0; i < title.getLastCellNum(); i++){
-                            System.out.println(title.getCell(i).toString());
                             if(null != title.getCell(i) && !"".equals(title.getCell(i).toString())){
                                 String cellName = title.getCell(i).toString();
                                 if(cellName.equals("日期")){
@@ -248,7 +245,7 @@ public class GuestController extends BaseController {
                             mapppp.put("attr24", getCellData(row, "收款收据"));
                             mapppp.put("attr25", "");
                             mapppp.put("attr26", "");
-                            mapppp.put("attr27", "");
+                            mapppp.put("attr27", sheetName);
                             mapppp.put("attr28", user.get("sid").toString());
                             mapppp.put("attr29", user.get("attr3").toString());
                             mapppp.put("attr30", "1");
@@ -358,7 +355,6 @@ public class GuestController extends BaseController {
                 result = "";
                 break;
         }
-        System.out.println(result);
         return result;
     }
 

@@ -42,8 +42,8 @@ input { outline: medium none; }
 .icon.icon-addFP{background-position: -498px -153px;width: 45px;height: 35px;}
 .icon.icon-import{background-position: -398px -153px;width: 45px;height: 35px;}
 .icon.icon-seach{position:absolute;top:0px;right:0px;background-position: -444px -209px;width: 47px;height: 30px;}
-.icon.icon-ck{background-position: -284px -335px;width: 21px;height: 30px;}
-.icon.icon-ck:hover{background-position: -284px -366px;width: 21px;height: 30px;}
+.icon.icon-ck1{background-position: -284px -335px;width: 21px;height: 30px;}
+.icon.icon-ck{background-position: -284px -366px;width: 21px;height: 30px;}
 .icon.icon-bj{background-position: -310px -336px;width: 21px;height: 30px;}
 .icon.icon-bj:hover{background-position: -310px -366px;width: 22px;height: 31px;}
 .icon.icon-cp{background-position: -41px -1232px;width: 22px;height: 19px;}
@@ -415,7 +415,7 @@ input { outline: medium none; }
 .none-border-table thead{background-color:#7C8EA6;color:#fff;}
 .none-border-table thead td{font-size: 13.5px;}
 .none-border-table tbody tr:nth-child(odd){background: #dddddd;}
-.none-border-table tbody tr:hover{background-color: #3f3f3f;color: #ffffff}
+.none-border-table tbody tr:hover{background-color: #555;color: #fff}
 
 .border-table {width:100%;color:#303942;font-size:15px;text-align:center;border:none; table-layout: fixed;word-break: break-all;clear:both;   border-collapse: collapse;}
 .border-table  td{height:45px;}

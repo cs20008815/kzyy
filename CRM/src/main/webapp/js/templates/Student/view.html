@@ -6,33 +6,63 @@
 </style>
 <div class="fast-now" id="currentLoc"></div>
 <div class="b-center">
-    <div class="qiye">
-        <table class="no-border-table long"style="table-layout: fixed;word-break: break-all;height:66px;">
+    <div class="qiye" style="">
+        <table class="no-border-table long"style="table-layout: fixed;word-break: break-all;border-collapse:separate; border-spacing:0px 10px;">
             <tr>
-                <td width="25%">
-                    <div class="form-td"  style="width: 30%">
-                        <input type="text" class="seach" style="width: 100%" id="name" placeholder="名称">
-                        <i class="icon icon-seach" id="search"></i>
+                <td width="30%">
+                    <div class="form-td"  style="width: 90%">
+                        <input type="text" class="seach" style="width: 100%" id="name" placeholder="模糊查询">
                     </div>
-                    <i class="icon icon-add" id="add" style="float: right;display: none;"></i>
+                </td>
+                <td width="30%"><i class="icon icon-add" id="add" style="float: right;"></i></td>
+                <td width="30%" align="right"><span class="gaojisousuo" style="font-size: 16px; color: #3c9adb; cursor: pointer;" title="高级搜索" >高级</span></td>
+            </tr>
+            <tr class="gaoji" hidden>
+                <td width="30%">
+                    <div class="form-td"  style="width: 90%">
+                        <input type="text" class="seach" id="attr3" style="width: 100%" placeholder="名称">
+                    </div>
+                </td>
+                <td width="30%">
+                    <div class="form-td"  style="width: 90%">
+                        <input type="text" class="seach" id="attr5" style="width: 100%" placeholder="学校">
+                    </div></td>
+                <td width="30%">
+                    <div class="form-td"  style="width: 90%">
+                        <input type="text" class="seach" id="attr6" style="width: 100%" placeholder="年级">
+                    </div></td>
+                </td>
+            </tr>
+            <tr class="gaoji" hidden>
+                <td width="30%">
+                    <div class="form-td"  style="width: 90%">
+                        <input type="text" class="seach" id="attr27" style="width: 100%" placeholder="类型">
+                    </div>
+                </td>
+                <td width="30%">
+                    <div class="form-td"  style="width: 90%">
+                        <input type="text" class="seach" style="width: 100%" placeholder="名称">
+                    </div></td>
+                <td width="30%">
+                    <div class="form-td"  style="width: 90%">
+                        <input type="text" class="seach" style="width: 100%" placeholder="名称">
+                    </div></td>
                 </td>
             </tr>
         </table>
-    </div>
-</div>
-<div class="b-center">
-    <div class="qiye" style="max-height: 600px; overflow-y: scroll;">
-        <div class="qiye-box">
-            <table class="none-border-table">
+        <div class="qiye-box" style="overflow-y: scroll;" id="tableVue">
+            <table class="none-border-table" style="margin-bottom: 0;">
                 <colgroup>
-                    <col width="4%">
-                    <col width="10%">
-                    <col width="10%">
+                    <col width="40">
+                    <col width="100">
+                    <col width="40">
+                    <col width="60">
+                    <col width="60">
+                    <col width="40">
+                    <col width="60">
+                    <col width="90">
+                    <col width="60">
                     <col width="8%">
-                    <col width="8%">
-                    <col width="8%">
-                    <col width="12%">
-                    <col width="12%">
                 </colgroup >
                 <thead>
                 <tr>
@@ -44,10 +74,27 @@
                     <td>学校</td>
                     <td>年级</td>
                     <td>手机号</td>
+                    <td>类型</td>
                     <td>操作</td>
                 </tr>
                 </thead>
-                <tbody id="tbody" style="">
+            </table>
+        </div>
+        <div class="qiye-boxx" style="height: 65%; overflow-y: scroll;margin-top: 0;">
+            <table class="none-border-table" style="margin-top: 0;">
+                <colgroup>
+                    <col width="40">
+                    <col width="100">
+                    <col width="40">
+                    <col width="60">
+                    <col width="60">
+                    <col width="40">
+                    <col width="60">
+                    <col width="90">
+                    <col width="60">
+                    <col width="8%">
+                </colgroup >
+                <tbody id="tbody" style="height: 400px;">
 
                 </tbody>
             </table>
