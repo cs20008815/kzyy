@@ -472,6 +472,12 @@
         <if test="updatedate != null" >
             and updateDate = #{updatedate,jdbcType=TIMESTAMP}
         </if>
+        <if test="startDate != null" >
+            and UNIX_TIMESTAMP(attr1) <![CDATA[ >= ]]> UNIX_TIMESTAMP(#{startDate,jdbcType=TIMESTAMP})
+        </if>
+        <if test="stopDate != null" >
+            and UNIX_TIMESTAMP(attr1) <![CDATA[ <= ]]> UNIX_TIMESTAMP(#{stopDate,jdbcType=TIMESTAMP})
+        </if>
         <if test="key != null" >
             and (
             attr1 LIKE CONCAT('%',#{key},'%')
@@ -506,7 +512,7 @@
             )
         </if>
         ORDER BY
-        updateDate DESC
+        attr1 DESC
     </select>
 
     <insert id="insertBatch" parameterType="List">

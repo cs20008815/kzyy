@@ -329,13 +329,13 @@ public class GuestController extends BaseController {
                             .getBuiltinFormat("h:mm")) {
                         sdf = new SimpleDateFormat("HH:mm");
                     } else {// 日期
-                        sdf = new SimpleDateFormat("yyyy年MM月dd");
+                        sdf = new SimpleDateFormat("yyyy-MM-dd");
                     }
                     Date date = cell.getDateCellValue();
                     result = sdf.format(date);
                 } else if (cell.getCellStyle().getDataFormat() == 58) {
                     // 处理自定义日期格式：m月d日(通过判断单元格的格式id解决，id的值是58)
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd");
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     double value = cell.getNumericCellValue();
                     Date date = org.apache.poi.ss.usermodel.DateUtil
                             .getJavaDate(value);

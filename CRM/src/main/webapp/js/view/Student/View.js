@@ -34,6 +34,13 @@ define(['jquery', 'underscore', 'backbone'
                 var _this = this;
                 this.$el.html(this.templates.View());
 
+                this.$("#attr27").autoselect({
+                    source:"api/list/query/9",
+                    searchParam:"key",
+                    label:["attr1"],
+                    id:"attr1"
+                });
+
                 this.query();
             },
             events: {
@@ -44,7 +51,10 @@ define(['jquery', 'underscore', 'backbone'
                 "click #search":"query",
                 "click .gaojisousuo":"search",
                 //"input #name":"query",
-                "input input":"query"
+                "input input":"query",
+                "blur input":"query",
+                "focus #startDate":"chooseDate",
+                "focus #stopDate":"chooseDate"
             },
             search: function(){
                 $(".gaoji").toggle(300);
@@ -60,7 +70,6 @@ define(['jquery', 'underscore', 'backbone'
             },
             PageCallback: function(page_id, panel){
                 var _this = this;
-                console.log(page_id);
                 //传递分页参数
                 var pageOpt = {
                     pageNum: page_id,
@@ -90,6 +99,14 @@ define(['jquery', 'underscore', 'backbone'
                     pageOpt.attr27 = _this.$("#attr27").val();
                 }
 
+                if("" != _this.$("#startDate").val()){
+                    pageOpt.startDate = _this.$("#startDate").val();
+                }
+
+                if("" != _this.$("#stopDate").val()){
+                    pageOpt.stopDate = _this.$("#stopDate").val();
+                }
+
                 _this.$("#querynoresult").css({"display": "none"});
                 var userModel = new Backbone.Model;
                 userModel.fetchEx(pageOpt,{
@@ -99,7 +116,6 @@ define(['jquery', 'underscore', 'backbone'
                             var entity = data.get("output");
                             var entityData = entity.data;
                             var entityPage = entity.page;
-                            console.log(entityData);
                             if(!entityData.length > 0){
                                 _this.$el.find("#querynoresult").css({"display": "block"});
                                 _this.$("#tbody").empty();
@@ -176,6 +192,18 @@ define(['jquery', 'underscore', 'backbone'
                         }else{
                             iziNotyf.alert("删除失败");
                         }
+                    }
+                });
+            },
+            chooseDate:function(e){
+                var id = $(e.currentTarget).attr('id');
+                var _this = this;
+                laydate({
+                    elem: "#"+id,
+                    format:"YYYY-MM-DD hh:MM:ss",
+                    istime: true,
+                    choose : function(data){
+                        _this.$("#"+id).blur();
                     }
                 });
             }
